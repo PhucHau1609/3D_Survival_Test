@@ -5,12 +5,29 @@ using TMPro; // Thêm thư viện TextMeshPro
 
 public class SelectionManager : MonoBehaviour
 {
+    public static SelectionManager Instance { get; set; }
+    public bool onTarget;
     public GameObject interaction_Info_UI;
     TextMeshProUGUI interaction_text; // Sử dụng TextMeshProUGUI thay vì Text
 
     private void Start()
     {
+        onTarget = false;
+
         interaction_text = interaction_Info_UI.GetComponent<TextMeshProUGUI>(); // Lấy thành phần TextMeshProUGUI
+    }
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+
+        }
     }
 
     void Update()
@@ -20,20 +37,27 @@ public class SelectionManager : MonoBehaviour
         if (Physics.Raycast(ray, out hit))
         {
             var selectionTransform = hit.transform;
-            var interactable = selectionTransform.GetComponent<InteractableObject>();
 
-            if (interactable != null) // Kiểm tra nếu interactable khác null
+            InteractableObject interactable = selectionTransform.GetComponent<InteractableObject>();
+
+            if (interactable && interactable.playerInRange)
             {
+
+                onTarget = true;
                 interaction_text.text = interactable.GetItemName();
                 interaction_Info_UI.SetActive(true);
             }
+
             else
             {
+                onTarget = false;
+
                 interaction_Info_UI.SetActive(false);
             }
         }
         else
         {
+            onTarget = false;
             interaction_Info_UI.SetActive(false);
         }
     }

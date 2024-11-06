@@ -678,7 +678,7 @@ GameObject:
   - component: {fileID: 2327619300449952502}
   - component: {fileID: 4818712636893659061}
   m_Layer: 0
-  m_Name: ThoCon
+  m_Name: WhiteRabbit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
