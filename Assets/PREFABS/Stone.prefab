@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 8977101047082046561}
   - component: {fileID: 7893785750660969085}
   - component: {fileID: 7304924561307935038}
-  - component: {fileID: 8436499816271084085}
   - component: {fileID: 8519261507245527898}
+  - component: {fileID: 8436499816271084085}
   m_Layer: 0
   m_Name: Stone
-  m_TagString: Untagged
+  m_TagString: pickable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -107,20 +107,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.57544214, y: 0.7392076, z: 0.5109899}
   m_Center: {x: 0.016663522, y: 0.3411801, z: 0.00023694336}
---- !u!114 &8436499816271084085
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2290846898853941114}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cf2d2dc12eb6134c9e3d64511d541b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerInRange: 0
-  ItemName: Stone
 --- !u!65 &8519261507245527898
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -142,3 +128,17 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 7, y: 3, z: 7}
   m_Center: {x: 0.016663522, y: 0.3411801, z: 0.00023694336}
+--- !u!114 &8436499816271084085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2290846898853941114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cf2d2dc12eb6134c9e3d64511d541b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerInRange: 0
+  ItemName: Stone

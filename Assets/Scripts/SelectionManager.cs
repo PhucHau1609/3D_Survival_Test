@@ -1,14 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro; // Thêm thư viện TextMeshPro
+using TMPro;
+using UnityEngine.UI; // Thêm thư viện TextMeshPro
 
 public class SelectionManager : MonoBehaviour
 {
     public static SelectionManager Instance { get; set; }
     public bool onTarget;
+    public GameObject selectedObject;
     public GameObject interaction_Info_UI;
     TextMeshProUGUI interaction_text; // Sử dụng TextMeshProUGUI thay vì Text
+
+    public Image centerDotImage;
+    public Image handIcon;
 
     private void Start()
     {
@@ -44,8 +49,19 @@ public class SelectionManager : MonoBehaviour
             {
 
                 onTarget = true;
+                selectedObject = interactable.gameObject;
                 interaction_text.text = interactable.GetItemName();
                 interaction_Info_UI.SetActive(true);
+                if(interactable.CompareTag("pickable"))
+                {
+                    centerDotImage.gameObject.SetActive(false);
+                    handIcon.gameObject.SetActive(true);
+                }
+                else
+                {
+                    handIcon.gameObject.SetActive(false);
+                    centerDotImage.gameObject.SetActive(true);
+                }
             }
 
             else
@@ -53,6 +69,8 @@ public class SelectionManager : MonoBehaviour
                 onTarget = false;
 
                 interaction_Info_UI.SetActive(false);
+                handIcon.gameObject.SetActive(false);
+                centerDotImage.gameObject.SetActive(true);
             }
         }
         else
