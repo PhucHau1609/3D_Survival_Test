@@ -52,7 +52,7 @@ public class CraftingSystem : MonoBehaviour
         AxeReq1 = toolsScreenUI.transform.Find("Axe").transform.Find("req1").GetComponent<Text>();
         AxeReq2 = toolsScreenUI.transform.Find("Axe").transform.Find("req2").GetComponent<Text>();
 
-        craftAxeBTN = toolsScreenUI.transform.Find("Axe").transform.Find("Button").GetComponent<Button>();
+        craftAxeBTN = toolsScreenUI.transform.Find("Axe").transform.Find("Buttonaxe").GetComponent<Button>();
         craftAxeBTN.onClick.AddListener(delegate{CraftAnyIterm(AxeBLP);});
 
     }
