@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Blueprint : MonoBehaviour
+public class Blueprint
 {
     public string itemName;
     public string Req1;

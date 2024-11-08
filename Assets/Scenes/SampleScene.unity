@@ -566,7 +566,7 @@ GameObject:
   - component: {fileID: 73939445}
   - component: {fileID: 73939444}
   m_Layer: 5
-  m_Name: req2
+  m_Name: Req2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1725,7 +1725,6 @@ MonoBehaviour:
   toolsScreenUI: {fileID: 249446519}
   inventoryItemList: []
   isOpen: 0
-  AxeBLP: {fileID: 0}
 --- !u!4 &397021165
 Transform:
   m_ObjectHideFlags: 0
@@ -4317,7 +4316,7 @@ GameObject:
   - component: {fileID: 1132116934}
   - component: {fileID: 1132116933}
   m_Layer: 5
-  m_Name: req1
+  m_Name: Req1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

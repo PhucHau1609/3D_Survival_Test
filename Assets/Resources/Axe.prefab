@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8273806094247126877}
   - component: {fileID: 3888285583092013392}
   - component: {fileID: 7241149622915403242}
+  - component: {fileID: 147684307844584811}
   m_Layer: 5
   m_Name: Axe
   m_TagString: Untagged
@@ -101,3 +102,21 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &147684307844584811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4396926439690806073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9a6166070ae3464393febd1d1d2c678, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemName: Axe
+  Req1: 
+  Req2: 
+  Req1amount: 0
+  Req2amount: 0
+  numOfRequirements: 0

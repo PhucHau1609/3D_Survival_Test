@@ -24,7 +24,7 @@ public class CraftingSystem : MonoBehaviour
     public bool isOpen;
 
     //All Blueprint
-    public Blueprint AxeBLP = new Blueprint("Axe",2,"Stone",3,"Stick",3);
+    private Blueprint AxeBLP;
 
     public static CraftingSystem Instance {get; set;}
 
@@ -42,6 +42,7 @@ public class CraftingSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        AxeBLP = new Blueprint("Axe",2,"Stone",3,"Stick",3);
         
         isOpen = false;
 
@@ -49,11 +50,11 @@ public class CraftingSystem : MonoBehaviour
         toolsBTN.onClick.AddListener(delegate{OpenToolsCategory();});
 
         //AXE
-        AxeReq1 = toolsScreenUI.transform.Find("Axe").transform.Find("req1").GetComponent<Text>();
-        AxeReq2 = toolsScreenUI.transform.Find("Axe").transform.Find("req2").GetComponent<Text>();
+        AxeReq1 = toolsScreenUI.transform.Find("Axe").transform.Find("Req1").GetComponent<Text>();
+        AxeReq2 = toolsScreenUI.transform.Find("Axe").transform.Find("Req2").GetComponent<Text>();
 
         craftAxeBTN = toolsScreenUI.transform.Find("Axe").transform.Find("Buttonaxe").GetComponent<Button>();
-        craftAxeBTN.onClick.AddListener(delegate{CraftAnyIterm(AxeBLP);});
+        craftAxeBTN.onClick.AddListener(delegate{CraftAnyItem(AxeBLP);});//
 
     }
 
@@ -63,8 +64,14 @@ public class CraftingSystem : MonoBehaviour
         toolsScreenUI.SetActive(true);
     }
 
-    void CraftAnyIterm(Blueprint blueprintToCraft)
+    
+    void CraftAnyItem(Blueprint blueprintToCraft)
     {
+        if (InventorySystem.Instance == null)
+    {
+        Debug.LogError("InventorySystem chưa được khởi tạo!");
+        return;
+    }
 
         InventorySystem.Instance.AddTolnventory(blueprintToCraft.itemName);
 
@@ -84,8 +91,10 @@ public class CraftingSystem : MonoBehaviour
     }
     public IEnumerator calculate()
     {
+        // yield return new WaitForSeconds(1f);
+        // InventorySystem.Instance.ReCalculateList();
         yield return 0;//So there is no delay
-        InventorySystem.Instance.ReCalculeList();
+        InventorySystem.Instance.ReCalculateList();
         RefreshNeededItems();//Add this
     }
     
