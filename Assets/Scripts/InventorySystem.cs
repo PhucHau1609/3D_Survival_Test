@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class InventorySystem : MonoBehaviour
 {
+    public GameObject ItemInfoUI;
 
     public static InventorySystem Instance { get; set; }
 
@@ -29,6 +30,8 @@ public class InventorySystem : MonoBehaviour
     public Image pickupImage;
 
 
+
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -45,8 +48,10 @@ public class InventorySystem : MonoBehaviour
     void Start()
     {
         isOpen = false;
-        isFull = false;
+        //isFull = false;
         PopulateSlotList();
+
+        Cursor.visible = false;
     }
 
     private void PopulateSlotList()
@@ -69,6 +74,11 @@ public class InventorySystem : MonoBehaviour
             Debug.Log("i is pressed");
             inventoryScreenUI.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+
+            SelectionManager.Instance.DisableSelection();
+            SelectionManager.Instance.GetComponent<SelectionManager>().enabled = false;
+
             isOpen = true;
 
         }
@@ -79,6 +89,10 @@ public class InventorySystem : MonoBehaviour
             if(!CraftingSystem.Instance.isOpen)
             {
                 Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+
+                SelectionManager.Instance.EnableSelection();
+                SelectionManager.Instance.GetComponent<SelectionManager>().enabled = true;
             }
             
             isOpen = false;
@@ -100,12 +114,32 @@ public class InventorySystem : MonoBehaviour
         CraftingSystem.Instance.RefreshNeededItems();
     }
 
-    void TriggerPickupPopUp(string itemName, Sprite itemSprite)
+    /*void TriggerPickupPopUp(string itemName, Sprite itemSprite)
     {
         pickupAlert.SetActive(true);
 
         pickupName.text = itemName;
         pickupImage.sprite = itemSprite;
+    }*/
+
+    void TriggerPickupPopUp(string itemName, Sprite itemSprite)
+    {
+        pickupAlert.SetActive(true);
+
+        pickupName.text = itemName;
+
+        pickupImage.sprite = itemSprite;
+
+        StartCoroutine(HidePickupAlertAfterDelay(1f));
+    }
+
+    private IEnumerator HidePickupAlertAfterDelay(float delay)
+    {
+
+        yield return new WaitForSeconds(delay);
+
+
+        pickupAlert.SetActive(false);
     }
 
 
