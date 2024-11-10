@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -129,7 +129,7 @@ public class EquipSystem : MonoBehaviour
         return quickSlotsList[slotNumber-1].transform.GetChild(0).gameObject;
     }
 
-    bool checkIfSlotIsFull(int slotNumber)
+    /*bool checkIfSlotIsFull(int slotNumber)
     {
         if(quickSlotsList[slotNumber].transform.childCount > 0)
         {
@@ -139,7 +139,19 @@ public class EquipSystem : MonoBehaviour
         {
             return false;
         }
+    }*/
+
+    bool checkIfSlotIsFull(int slotNumber)
+    {
+        // Trừ 1 cho slotNumber vì mảng `quickSlotsList` bắt đầu từ 0
+        int adjustedSlot = slotNumber - 1;
+        if (adjustedSlot >= 0 && adjustedSlot < quickSlotsList.Count)
+        {
+            return quickSlotsList[adjustedSlot].transform.childCount > 0;
+        }
+        return false;
     }
+
 
     private void PopulateSlotList()
     {
