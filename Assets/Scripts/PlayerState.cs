@@ -60,7 +60,7 @@ public class PlayerState : MonoBehaviour
         distanceTravelled += Vector3.Distance(playerBody.transform.position, lastPosition);
         lastPosition = playerBody.transform.position;
 
-        if(distanceTravelled >=5)
+        if(distanceTravelled >=15)
         {
             distanceTravelled = 0;
             currentCalories -= 1;
