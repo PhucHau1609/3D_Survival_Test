@@ -34,6 +34,12 @@ public class ChoppableTree : MonoBehaviour
     }
     public void GetHit()
     {
+        StartCoroutine(hit());
+    }
+
+    public IEnumerator hit()
+    {
+        yield return new WaitForSeconds(0.6f);
         treeHealth -= 1;
     }
 
