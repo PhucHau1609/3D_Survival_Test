@@ -20,6 +20,7 @@ public class EquipableItem : MonoBehaviour
         SelectionManager.Instance.handIsVisible == false)
         {          
           
+            StartCoroutine(SwingSoundDelay());
             animator.SetTrigger("hit");
         }
 
@@ -31,7 +32,15 @@ public class EquipableItem : MonoBehaviour
 
         if (selectedTree != null)
         {
+            SoundManager.Instance.PlaySound(SoundManager.Instance.chopSound);
+
             selectedTree.GetComponent<ChoppableTree>().GetHit();
         }
+    }
+
+    IEnumerator SwingSoundDelay()
+    {
+        yield return new WaitForSeconds(0.2f);
+        SoundManager.Instance.PlaySound(SoundManager.Instance.toolSwingSound);
     }
 }

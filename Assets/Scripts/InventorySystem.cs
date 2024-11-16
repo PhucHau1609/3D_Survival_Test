@@ -71,7 +71,6 @@ public class InventorySystem : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.I) && !isOpen)
         {
-            Debug.Log("i is pressed");
             inventoryScreenUI.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
@@ -101,6 +100,9 @@ public class InventorySystem : MonoBehaviour
 
     public void AddTolnventory(string itemName)
     {
+
+        SoundManager.Instance.PlaySound(SoundManager.Instance.pickupItemSound);
+
         whatSlotToEquip = FindNextEmptySlot();
 
         itemToAdd = Instantiate(Resources.Load<GameObject>(itemName), whatSlotToEquip.transform.position, whatSlotToEquip.transform.rotation);
@@ -155,17 +157,17 @@ public class InventorySystem : MonoBehaviour
         return new GameObject();
     }
 
-    public bool CheckIfFull()
+    public bool CheckSlotsAvailable(int emptyMeeded)
     {
-        int counter = 0;
+        int emptySlot = 0;
         foreach(GameObject slot in slotList)
         {
             if(slot.transform.childCount > 0)
             {
-                counter += 1;
+                emptySlot += 1;
             }
         }
-        if(counter == 21)
+        if(emptySlot ==  emptyMeeded)
         {
             return true;
         }
