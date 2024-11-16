@@ -8,24 +8,26 @@ public class CraftingSystem : MonoBehaviour
 {
 
     public GameObject craftingScreenUI;
-    public GameObject toolsScreenUI, survivalScreenUI, refineScreenUI;
+    public GameObject toolsScreenUI, survivalScreenUI, refineScreenUI, constructionScreenUI;
 
     public List<string> inventoryItemList = new List<string>();
 
     //Category Buttons
-    Button toolsBTN, survivalBTN, refineBTN;
+    Button toolsBTN, survivalBTN, refineBTN, constructionBTN;
 
     //Craft Buttons
-    Button craftAxeBTN, craftPlankBTN;
+    Button craftAxeBTN, craftPlankBTN, craftFoundationBTN, craftWallBTN;
 
     //Requirement Text
-    Text AxeReq1, AxeReq2, PlankReq1;
+    Text AxeReq1, AxeReq2, PlankReq1, FoundationReq1, WallReq1;
 
     public bool isOpen;
 
     //All Blueprint
     private Blueprint AxeBLP;
     private Blueprint PlankBLP;
+    private Blueprint FoundationBLP;
+    private Blueprint WallBLP;
 
     public static CraftingSystem Instance {get; set;}
 
@@ -45,6 +47,8 @@ public class CraftingSystem : MonoBehaviour
     {
         AxeBLP = new Blueprint("Axe", 1, 2, "Stone", 3, "Stick", 3);
         PlankBLP = new Blueprint("Plank", 2, 1, "Log", 1, "", 0);
+        FoundationBLP = new Blueprint("Foundation", 1, 1, "Plank", 4, "", 0);
+        WallBLP = new Blueprint("Wall", 1, 1, "Plank", 2, "", 0);
         
         isOpen = false;
 
@@ -57,18 +61,33 @@ public class CraftingSystem : MonoBehaviour
         refineBTN = craftingScreenUI.transform.Find("RefineButton").GetComponent<Button>();
         refineBTN.onClick.AddListener(delegate{OpenRefineCategory();});
 
+        constructionBTN = craftingScreenUI.transform.Find("ConstructionButton").GetComponent<Button>();
+        constructionBTN.onClick.AddListener(delegate{OpenConstructionCategory();});
+
         //AXE
         AxeReq1 = toolsScreenUI.transform.Find("Axe").transform.Find("Req1").GetComponent<Text>();
         AxeReq2 = toolsScreenUI.transform.Find("Axe").transform.Find("Req2").GetComponent<Text>();
 
-        craftAxeBTN = toolsScreenUI.transform.Find("Axe").transform.Find("Buttonaxe").GetComponent<Button>();
+        craftAxeBTN = toolsScreenUI.transform.Find("Axe").transform.Find("Button").GetComponent<Button>();
         craftAxeBTN.onClick.AddListener(delegate{CraftAnyItem(AxeBLP);});//
 
         //Plank
         PlankReq1 = refineScreenUI.transform.Find("Plank").transform.Find("Req1").GetComponent<Text>();
 
-        craftPlankBTN = refineScreenUI.transform.Find("Plank").transform.Find("Buttonplank").GetComponent<Button>();
+        craftPlankBTN = refineScreenUI.transform.Find("Plank").transform.Find("Button").GetComponent<Button>();
         craftPlankBTN.onClick.AddListener(delegate{CraftAnyItem(PlankBLP);});//
+
+        //Foundation
+        FoundationReq1 = constructionScreenUI.transform.Find("Foundation").transform.Find("Req1").GetComponent<Text>();
+
+        craftFoundationBTN = constructionScreenUI.transform.Find("Foundation").transform.Find("Button").GetComponent<Button>();
+        craftFoundationBTN.onClick.AddListener(delegate{CraftAnyItem(FoundationBLP);});//
+
+        //Wall
+        WallReq1 = constructionScreenUI.transform.Find("Wall").transform.Find("Req1").GetComponent<Text>();
+
+        craftWallBTN = constructionScreenUI.transform.Find("Wall").transform.Find("Button").GetComponent<Button>();
+        craftWallBTN.onClick.AddListener(delegate{CraftAnyItem(WallBLP);});//
 
     }
 
@@ -77,6 +96,7 @@ public class CraftingSystem : MonoBehaviour
         craftingScreenUI.SetActive(false);
         survivalScreenUI.SetActive(false);
         refineScreenUI.SetActive(false);
+        constructionScreenUI.SetActive(false);
         toolsScreenUI.SetActive(true);
     }
 
@@ -85,6 +105,7 @@ public class CraftingSystem : MonoBehaviour
         craftingScreenUI.SetActive(false);
         toolsScreenUI.SetActive(false);
         refineScreenUI.SetActive(false);
+        constructionScreenUI.SetActive(false);
         survivalScreenUI.SetActive(true);
     }
 
@@ -93,7 +114,17 @@ public class CraftingSystem : MonoBehaviour
         craftingScreenUI.SetActive(false);
         toolsScreenUI.SetActive(false);
         survivalScreenUI.SetActive(false);
+        constructionScreenUI.SetActive(false);
         refineScreenUI.SetActive(true);
+    }
+
+    void OpenConstructionCategory()
+    {
+        craftingScreenUI.SetActive(false);
+        toolsScreenUI.SetActive(false);
+        survivalScreenUI.SetActive(false);
+        refineScreenUI.SetActive(false);
+        constructionScreenUI.SetActive(true);
     }
 
     
@@ -158,6 +189,7 @@ public class CraftingSystem : MonoBehaviour
             toolsScreenUI.SetActive(false);
             survivalScreenUI.SetActive(false);
             refineScreenUI.SetActive(false);
+            constructionScreenUI.SetActive(false);
 
             if(!InventorySystem.Instance.isOpen)
             {
@@ -178,6 +210,7 @@ public class CraftingSystem : MonoBehaviour
         int stone_count = 0;
         int stick_count = 0;
         int log_count = 0;
+        int plank_count = 0;
 
         inventoryItemList = InventorySystem.Instance.itemList;
 
@@ -194,6 +227,9 @@ public class CraftingSystem : MonoBehaviour
                 case "Log":
                     log_count += 1;
                     break;
+                case "Plank":
+                    plank_count += 1;
+                    break;
             }
         }
         
@@ -201,7 +237,7 @@ public class CraftingSystem : MonoBehaviour
         AxeReq1.text = "3 Stone [" + stone_count + "]";
         AxeReq2.text = "3 Stick [" + stick_count + "]";
 
-        if (stone_count >= 3 && stick_count >= 3 && InventorySystem.Instance.CheckSlotsAvailable(1))
+        if (stone_count >= 3 && stick_count >= 3)
         {
             craftAxeBTN.gameObject.SetActive(true);
         }
@@ -214,13 +250,37 @@ public class CraftingSystem : MonoBehaviour
         //---Plank---//
         PlankReq1.text = "1 Log [" + log_count + "]";
 
-        if (log_count >= 1 && InventorySystem.Instance.CheckSlotsAvailable(2))
+        if (log_count >= 1)
         {
             craftPlankBTN.gameObject.SetActive(true);
         }
         else
         {
             craftPlankBTN.gameObject.SetActive(false);
+        }
+
+        //---Foundation---//
+        FoundationReq1.text = "4 Plank [" + plank_count + "]";
+
+        if (plank_count >= 4)
+        {
+            craftFoundationBTN.gameObject.SetActive(true);
+        }
+        else
+        {
+            craftFoundationBTN.gameObject.SetActive(false);
+        }
+
+        //---Wall---//
+        WallReq1.text = "2 Plank [" + plank_count + "]";
+
+        if (plank_count >= 2)
+        {
+            craftWallBTN.gameObject.SetActive(true);
+        }
+        else
+        {
+            craftWallBTN.gameObject.SetActive(false);
         }
     }
 }
