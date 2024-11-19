@@ -36,7 +36,7 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public bool isUseable;
 
-    public GameObject itemPendingToBeUsed;
+    //public GameObject itemPendingToBeUsed;
 
 
 
@@ -97,8 +97,8 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             }
             if (isUseable)
             {
-                itemPendingToBeUsed = gameObject;
-
+                ConstructionManager.Instance.itemToBeDestroyed = gameObject;
+                gameObject.SetActive(false);
                 UseItem();
             }
         }
@@ -106,9 +106,23 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
       
     }
 
+    // Triggered when the mouse button is released over the item that has this script.
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        if (eventData.button == PointerEventData.InputButton.Right)
+        {
+            if (isConsumable && itemPendingConsumption == gameObject)
+            {
+                DestroyImmediate(gameObject);
+                InventorySystem.Instance.ReCalculateList();  
+                CraftingSystem.Instance.RefreshNeededItems();
+            }
+        }
+    }
+
     private void UseItem()
     {
-       
+
         itemInfoUI.SetActive(false);
 
         InventorySystem.Instance.isOpen = false;
@@ -129,34 +143,20 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
         switch (gameObject.name)
         {
-            case "Foudation(Clone)":
-                ConstructionManager.Instance.ActivateConstructionPlacement("FoudationModel"); 
+            case "Foundation(Clone)":
+                ConstructionManager.Instance.ActivateConstructionPlacement("FoundationModel");
                 break;
-            case "Foudation":
-                ConstructionManager.Instance.ActivateConstructionPlacement("FoudationModel"); // For tsting
+            case "Foundation":
+                ConstructionManager.Instance.ActivateConstructionPlacement("FoundationModel"); // For tsting
+                break;
+            case "Wall(Clone)":
+                ConstructionManager.Instance.ActivateConstructionPlacement("WallModel");
+                break;
+            case "Wall":
+                ConstructionManager.Instance.ActivateConstructionPlacement("WallModel"); // For tsting
                 break;
             default:
                 break;
-        }
-    }
-
-    // Triggered when the mouse button is released over the item that has this script.
-    public void OnPointerUp(PointerEventData eventData)
-    {
-        if (eventData.button == PointerEventData.InputButton.Right)
-        {
-            if (isConsumable && itemPendingConsumption == gameObject)
-            {
-                DestroyImmediate(gameObject);
-                InventorySystem.Instance.ReCalculateList();  
-                CraftingSystem.Instance.RefreshNeededItems();
-            }
-            if (isUseable && itemPendingToBeUsed == gameObject)
-            {
-                DestroyImmediate(gameObject);
-                InventorySystem.Instance.ReCalculateList();
-                CraftingSystem.Instance.RefreshNeededItems();
-            }
         }
     }
 

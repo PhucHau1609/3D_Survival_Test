@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5457726640297744641}
   - component: {fileID: -3484846391837437445}
   m_Layer: 5
-  m_Name: Foudation
+  m_Name: Foundation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -115,7 +115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isTrashable: 1
-  thisName: Foudation
+  thisName: Foundation
   thisDescription: Used as the base of a structure.
   thisFunctionality: RIGHT-CLICK to position the item.
   isConsumable: 0
@@ -126,4 +126,3 @@ MonoBehaviour:
   isInsideQuickSlot: 0
   isSelected: 0
   isUseable: 1
-  itemPendingToBeUsed: {fileID: 0}
