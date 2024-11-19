@@ -8,6 +8,10 @@ TagManager:
   - pickable
   - QuickSlot
   - Selectable_trees
+  - ghost
+  - Tree
+  - Ground
+  - activeConstructable
   layers:
   - Default
   - TransparentFX
