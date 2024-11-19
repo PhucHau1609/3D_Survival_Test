@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scenes/SampleScene.meta
 guid: 51f97473fabccca4e8033a46dfc90bdc
+========
+guid: 115939fafdaab3542ac9de578833169e
+>>>>>>>> mergeTest:Assets/Polytope Studio.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

@@ -17,7 +17,8 @@ public class EquipableItem : MonoBehaviour
         if(Input.GetMouseButtonDown(0) && //left mouse button
         InventorySystem.Instance.isOpen == false && 
         CraftingSystem.Instance.isOpen == false && 
-        SelectionManager.Instance.handIsVisible == false)
+        SelectionManager.Instance.handIsVisible == false
+        && !ConstructionManager.Instance.inConstructionMode) //video 19 phat hienj thieu swingwait == false 
         {          
           
             StartCoroutine(SwingSoundDelay());

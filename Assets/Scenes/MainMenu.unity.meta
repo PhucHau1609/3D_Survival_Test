@@ -1,5 +1,10 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scenes/MainMenu.unity.meta
 guid: 009736b5f45a87d448932ea9dd027c85
+========
+guid: fa813720c5484d3449a03bd27ab44df6
+folderAsset: yes
+>>>>>>>> mergeTest:Assets/JC_StylizedRocks_Lite.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

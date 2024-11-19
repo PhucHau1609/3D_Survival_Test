@@ -1,4 +1,4 @@
-using System;
+ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -104,7 +104,7 @@ public class Constructable : MonoBehaviour
         foreach (GameObject item in ghostList)
         {
             item.transform.SetParent(transform.parent, true);
-          //  item.gameObject.GetComponent<GhostItem>().solidCollider.enabled = false;
+            item.gameObject.GetComponent<GhostItem>().solidCollider.enabled = false;
             item.gameObject.GetComponent<GhostItem>().isPlaced = true;
         }
     }

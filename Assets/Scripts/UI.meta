@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/UI.meta
 guid: 18b072144721c0643aee995662e60fed
+========
+guid: be41ee6ac43e67344981ef736f6e5ca2
+>>>>>>>> mergeTest:Assets/Polytope Studio/Lowpoly_Environments.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
