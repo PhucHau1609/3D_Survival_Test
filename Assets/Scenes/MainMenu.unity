@@ -2481,6 +2481,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 683af819c98ad1e4bb7fb6b7762d5255, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSavingToJson: 1
 --- !u!1 &1149191085
 GameObject:
   m_ObjectHideFlags: 0
@@ -4599,6 +4600,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 535c54efc7ab2f541829083a8924f1f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loadGameBTN: {fileID: 11851201}
 --- !u!224 &2035489001
 RectTransform:
   m_ObjectHideFlags: 0

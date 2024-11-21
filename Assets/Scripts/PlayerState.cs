@@ -35,6 +35,8 @@ public class PlayerState : MonoBehaviour
         {
             Instance = this;
         }
+
+        //DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
