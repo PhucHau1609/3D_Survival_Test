@@ -29,7 +29,7 @@ public class InventorySystem : MonoBehaviour
     public Text pickupName;
     public Image pickupImage;
 
-
+    public List<string> itemPickedup;
 
 
     private void Awake()
@@ -101,7 +101,10 @@ public class InventorySystem : MonoBehaviour
     public void AddTolnventory(string itemName)
     {
 
-        SoundManager.Instance.PlaySound(SoundManager.Instance.pickupItemSound);
+        if(SaveManager.Instance.isLoading == false)
+        {
+            SoundManager.Instance.PlaySound(SoundManager.Instance.pickupItemSound);
+        }
 
         whatSlotToEquip = FindNextEmptySlot();
 
@@ -115,14 +118,6 @@ public class InventorySystem : MonoBehaviour
         ReCalculateList();
         CraftingSystem.Instance.RefreshNeededItems();
     }
-
-    /*void TriggerPickupPopUp(string itemName, Sprite itemSprite)
-    {
-        pickupAlert.SetActive(true);
-
-        pickupName.text = itemName;
-        pickupImage.sprite = itemSprite;
-    }*/
 
     void TriggerPickupPopUp(string itemName, Sprite itemSprite)
     {

@@ -7,8 +7,8 @@ public class AllGameData
 {
     public PlayerData playerData;
 
-  /*  public EnviromentData enviromentData;
+    public EnviromentData enviromentData;
 
-    public ConstructionData constructionData;*/
+    //public ConstructionData constructionData;*/
 
 }
