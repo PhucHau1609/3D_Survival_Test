@@ -8,16 +8,9 @@ public class MainMenu : MonoBehaviour
 {
     public Button loadGameBTN;
 
-    private void Start()
-    {
-        loadGameBTN.onClick.AddListener(() =>
-        {
-            SaveManager.Instance.StartLoadedGame();
-        });
-    }
     public void LoadSceneGame()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("GameScene");
     }
 
     public void ExitGame()
