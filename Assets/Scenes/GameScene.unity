@@ -18308,6 +18308,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerInRange: 0
   isTalkingWithPlayer: 0
+  quests:
+  - accepted: 0
+    declined: 0
+    initialDialogCompleted: 0
+    isCompleted: 0
+    hasNoRequirements: 0
+    info: {fileID: 11400000, guid: 618a7386f7833c445819242f52959e9c, type: 2}
+  currentActiveQuest:
+    accepted: 0
+    declined: 0
+    initialDialogCompleted: 0
+    isCompleted: 0
+    hasNoRequirements: 0
+    info: {fileID: 11400000, guid: 618a7386f7833c445819242f52959e9c, type: 2}
+  activeQuestIndex: 0
+  firstTimeInteraction: 1
+  currentDialog: 0
 --- !u!65 &1687562094
 BoxCollider:
   m_ObjectHideFlags: 0

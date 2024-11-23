@@ -209,4 +209,9 @@ public class InventorySystem : MonoBehaviour
             }
         }
     }
+
+    internal void AddToInventory(string rewardItem1)
+    {
+        throw new NotImplementedException();
+    }
 }
