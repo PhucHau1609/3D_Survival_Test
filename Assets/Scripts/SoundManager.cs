@@ -14,8 +14,16 @@ public class SoundManager : MonoBehaviour
     public AudioSource pickupItemSound;
     public AudioSource grassWalkSound;
 
+    public AudioSource drawMetalicToolSound;
+    public AudioSource addToQuickSlots;
+
+    public AudioSource treeFall;
+
     //Music
     public AudioSource startingZoneBGMusic;
+
+    //voice
+    public AudioSource voiceovers;
 
     private void Awake()
     {
@@ -38,5 +46,18 @@ public class SoundManager : MonoBehaviour
         }
     }
     
+    public void PlayVoiceOvers(AudioClip clip)
+    {
+        voiceovers.clip = clip;
+        if (!voiceovers.isPlaying)
+        {
+            voiceovers.Play();
+        }
+        else
+        {
+            voiceovers.Stop();
+            voiceovers.Play();
+        }
+    }
 
 }

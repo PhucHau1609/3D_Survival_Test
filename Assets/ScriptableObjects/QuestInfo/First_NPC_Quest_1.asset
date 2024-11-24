@@ -26,30 +26,46 @@ MonoBehaviour:
     \nThey are so fluffy and cute. \nI am useless."
   - 'Wait! Maybe you can help me?
 
-    
+
 
     Don''t worry, I will pay you.'
+  initialDialogClips:
+  - {fileID: 8300000, guid: 3b6479733830df54fbce5ee7f718bb06, type: 3}
+  - {fileID: 8300000, guid: cbea9ec3e967e1045935a47041a87466, type: 3}
+  - {fileID: 8300000, guid: a737bab7ab6fee24a974065bc6dc479f, type: 3}
+  - {fileID: 8300000, guid: 103e5fd22b825d44da4e66f9a07acf08, type: 3}
+  - {fileID: 8300000, guid: c7aab9a1cae192d48a63a3f415db0072, type: 3}
   acceptOption: 'Sure, I will help you.
 
     I can use some money.'
-  acceptAnswer: 'That''s awsomel
+  acceptAnswer: 'That''s awsome!
 
     If you can bring me 7 rabbit hides, it will
     be more than enough.'
+  acceptAnswerClip: {fileID: 8300000, guid: 8b2a11ea04f35c1478d615cc107e9296, type: 3}
   declineOption: I'm sorry, but I can't kill them as well.
   declineAnswer: 'Oh well, it was worth a try.
 
     If you change your mind, please
     come back.'
+  declineAnswerClip: {fileID: 8300000, guid: 61375aef95ca5ed4dbed78f59987d83c, type: 3}
   comebackAfterDecline: So, did you change your mind?
+  comebackAfterDeclineClip: {fileID: 8300000, guid: 59fce953acc21074da48beca39cc2fec, type: 3}
   comebackInProgress: It is still not enough, make sure to check in the tall grass
     as well.
-  comebackCompleted: Those poor things, As promised, here is your reward,
-  finalWords: I hope this will make my father proud
+  comebackInProgressClip: {fileID: 8300000, guid: bfdf947317719584d846186b53c4d027, type: 3}
+  comebackCompleted: 'Those poor things.
+
+    As promised, here is your reward.'
+  comebackCompletedClip: {fileID: 8300000, guid: 37cad970127d84641a778aa45ef44897, type: 3}
+  finalWords: I hope this will make my father proud.
+  finalWordsClip: {fileID: 8300000, guid: 789e77ad04907d440a9317203d3d2252, type: 3}
   coinReward: 25
   rewardItem1: Stone
-  rewardItem2: Stone
-  firstRequirmentItem: Stick
-  firstRequirementAmount: 3
+  rewardItem2: 
+  firstRequirmentItem: RabbitHide
+  firstRequirementAmount: 7
   secondRequirmentItem: 
   secondRequirementAmount: 0
+  hasCheckpoints: 0
+  checkpoints: []
