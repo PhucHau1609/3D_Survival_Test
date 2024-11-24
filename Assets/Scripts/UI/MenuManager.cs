@@ -10,10 +10,17 @@ public class MenuManager : MonoBehaviour
     public GameObject uiCanvas;
 
     public GameObject saveMenu;
-    public GameObject settingMenu;
-    public GameObject menuGame;
+    public GameObject settingsMenu;
+    public GameObject menu;
 
     public bool isMenuOpen;
+
+    public int currentFront = 0; 
+
+    public int SetAsFront()
+    {
+        return currentFront++;
+    }
 
     private void Awake()
     {
@@ -46,8 +53,8 @@ public class MenuManager : MonoBehaviour
         else if(Input.GetKeyDown(KeyCode.M) && isMenuOpen)
         {
             saveMenu.SetActive(false);
-            settingMenu.SetActive(false);
-            menuGame.SetActive(true);
+            settingsMenu.SetActive(false);
+            menu.SetActive(true);
 
 
             uiCanvas.SetActive(true);

@@ -72,6 +72,8 @@ public class InventorySystem : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.I) && !isOpen && !ConstructionManager.Instance.inConstructionMode)
         {
             inventoryScreenUI.SetActive(true);
+            inventoryScreenUI.GetComponentInParent<Canvas>().sortingOrder = MenuManager.Instance.SetAsFront();
+
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
 
@@ -101,10 +103,10 @@ public class InventorySystem : MonoBehaviour
     public void AddTolnventory(string itemName)
     {
 
-        if(SaveManager.Instance.isLoading == false)
-        {
-            SoundManager.Instance.PlaySound(SoundManager.Instance.pickupItemSound);
-        }
+        // if(SaveManager.Instance.isLoading == false)
+        // {
+        //     SoundManager.Instance.PlaySound(SoundManager.Instance.pickupItemSound);
+        // }
 
         whatSlotToEquip = FindNextEmptySlot();
 
@@ -113,10 +115,13 @@ public class InventorySystem : MonoBehaviour
 
         itemList.Add(itemName);
 
+        SoundManager.Instance.PlaySound(SoundManager.Instance.pickupItemSound);
         TriggerPickupPopUp(itemName, itemToAdd.GetComponent<Image>().sprite);
 
         ReCalculateList();
         CraftingSystem.Instance.RefreshNeededItems();
+
+        QuestManager.Instance.RefreshTrackerList();
     }
 
     void TriggerPickupPopUp(string itemName, Sprite itemSprite)
@@ -191,6 +196,7 @@ public class InventorySystem : MonoBehaviour
         }
         ReCalculateList();
         CraftingSystem.Instance.RefreshNeededItems();
+        QuestManager.Instance.RefreshTrackerList();
 
     }
     public void ReCalculateList()
@@ -210,8 +216,18 @@ public class InventorySystem : MonoBehaviour
         }
     }
 
-    internal void AddToInventory(string rewardItem1)
+    public int CheckItemAmount(string name)
     {
-        throw new NotImplementedException();
+        int itemCounter = 0;
+
+        foreach (string item in itemList)
+        {
+            if (item == name)
+            {
+                itemCounter++;
+            }
+
+        }
+        return itemCounter;
     }
 }
