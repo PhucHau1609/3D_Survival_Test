@@ -154,7 +154,7 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
                 ConstructionManager.Instance.itemToBeDestroyed = gameObject;
                 ConstructionManager.Instance.ActivateConstructionPlacement("WallModel");
                 break;
-            case "StorageBox(Clon)":
+            case "StorageBox(Clone)":
                 PlacementSystem.Instance.inventoryItemToDestory = gameObject;
                 PlacementSystem.Instance.ActivatePlacementMode("StorageBoxModel");
                 break;

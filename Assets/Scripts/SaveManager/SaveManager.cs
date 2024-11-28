@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using Unity.VisualScripting;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
@@ -67,7 +68,53 @@ public class SaveManager : MonoBehaviour
     {
         List<string> itemsPickedup = InventorySystem.Instance.itemPickedup;
 
-        return new EnviromentData(itemsPickedup);
+        List<TreeData> treesToSave = new List<TreeData>();
+
+        foreach (Transform tree in EnviromentManager.Instance.allTrees.transform)
+        {
+            if (tree.CompareTag("Tree"))
+            {
+                var td = new TreeData();
+                td.name = "Tree_Parent";
+                td.position = tree.position;
+                td.rotation = new Vector3(tree.rotation.x, tree.rotation.y, tree.rotation.z);
+
+                treesToSave.Add(td);
+            }
+            else
+            {
+                var td = new TreeData();
+                td.name = "Stump";
+                td.position = tree.position;
+                td.rotation = new Vector3(tree.rotation.x, tree.rotation.y, tree.rotation.z);
+
+                treesToSave.Add(td);
+            }
+        }
+        List<string> allAnimals = new List<string>();
+        foreach (Transform animalType in EnviromentManager.Instance.allAnimals.transform)
+        {
+            foreach(Transform animal in animalType.transform)
+            {
+                allAnimals.Add(animal.gameObject.name);
+            }
+        }
+
+        List<StorageData> allStorage = new List<StorageData>();
+        foreach(Transform placeable in EnviromentManager.Instance.placeables.transform)
+        {
+            if (placeable.gameObject.GetComponent<StorageBox>())
+            {
+                var sd = new StorageData();
+                sd.items = placeable.gameObject.GetComponent<StorageBox>().items;
+                sd.position = placeable.position;
+                sd.rotation = new Vector3(placeable.rotation.x, placeable.rotation.y, placeable.position.z);
+
+                allStorage.Add(sd);
+            }
+        }
+
+        return new EnviromentData(itemsPickedup, treesToSave, allAnimals, allStorage);
     }
 
     private PlayerData GetPlayerData()
@@ -157,6 +204,7 @@ public class SaveManager : MonoBehaviour
 
     private void SetEnviromentData(EnviromentData enviromentData)
     {
+        // ---------- Pick ----------- //
         foreach (Transform itemType in EnviromentManager.Instance.allItems.transform)
         {
             foreach(Transform item in itemType.transform)
@@ -169,6 +217,50 @@ public class SaveManager : MonoBehaviour
         } 
         
         InventorySystem.Instance.itemPickedup = enviromentData.pickedupItems;
+
+        // ----------- Trees ------------//
+        // Remove all default trees
+        foreach (Transform tree in EnviromentManager.Instance.allTrees.transform)
+        {
+            Destroy(tree.gameObject);
+        }
+        // Add trees and stumps
+        foreach (TreeData tree in enviromentData.treeData)
+        {
+           
+            var treePrefab = Instantiate(
+                Resources.Load<GameObject>(tree.name), // Load prefab từ Resources
+                new Vector3(tree.position.x, tree.position.y, tree.position.z), // Vị trí cây
+                Quaternion.Euler(tree.rotation.x, tree.rotation.y, tree.rotation.z) // Góc xoay cây
+            );
+
+            // Đặt parent cho cây
+            treePrefab.transform.SetParent(EnviromentManager.Instance.allTrees.transform);
+        }
+
+            // Destroy animals that should not exist
+        foreach (Transform animalType in EnviromentManager.Instance.allAnimals.transform)
+        {
+            foreach (Transform animal in animalType.transform)
+            {
+                if (enviromentData.animals.Contains(animal.gameObject.name) == false)
+                {
+                    Destroy(animal.gameObject);
+                }
+            }
+        }
+
+        foreach (StorageData storage in enviromentData.storage)
+        {
+            var storageBoxPrefab = Instantiate(
+               Resources.Load<GameObject>("StorageBoxModel"), // Load prefab từ Resources
+            new Vector3(storage.position.x, storage.position.y, storage.position.z), // Vị trí cây
+            Quaternion.Euler(storage.rotation.x, storage.rotation.y, storage.rotation.z)); // Góc xoay cây
+
+            storageBoxPrefab.GetComponent<StorageBox>().items = storage.items;
+
+            storageBoxPrefab.transform.SetParent(EnviromentManager.Instance.placeables.transform);
+        }
     }
 
     private void SetPlayerData(PlayerData playerData)
