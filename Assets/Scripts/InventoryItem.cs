@@ -165,6 +165,14 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             case "Wall":
                 ConstructionManager.Instance.ActivateConstructionPlacement("WallModel"); // For tsting
                 break;
+            case "Campfire(Clone)":
+                PlacementSystem.Instance.inventoryItemToDestory = gameObject;
+                PlacementSystem.Instance.ActivatePlacementMode("CampFireModel");
+                break;
+            case "Campfire":
+                PlacementSystem.Instance.inventoryItemToDestory = gameObject;
+                PlacementSystem.Instance.ActivatePlacementMode("CampFireModel");
+                break;
             default:
                 break;
         }
