@@ -680,6 +680,7 @@ GameObject:
   - component: {fileID: 8782111473297560842}
   - component: {fileID: 4650455358486408560}
   - component: {fileID: 2117005072644881030}
+  - component: {fileID: 5638041095399054854}
   m_Layer: 0
   m_Name: WhiteRabbit
   m_TagString: Untagged
@@ -703,8 +704,8 @@ Transform:
   - {fileID: 5830557227929010386}
   - {fileID: 3568352428158765218}
   - {fileID: 3900677982281147465}
-  - {fileID: 5488940780521944353}
   - {fileID: 4515444412063874031}
+  - {fileID: 7216550762264632957}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &6868518526728888877
@@ -805,7 +806,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 48
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!114 &8782111473297560842
 MonoBehaviour:
@@ -821,13 +822,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animalName: Rabbit
   playerInRange: 0
-  currenHealth: 0
+  currentHealth: 0
   maxHealth: 40
   soundChannel: {fileID: 2117005072644881030}
   rabbitHitAndScrem: {fileID: 8300000, guid: 42dd0ed092c0c274f9db5c285dcab7ea, type: 3}
   rabbitHitAndDie: {fileID: 8300000, guid: 5ad0eac1c59efe841a9c9b06a0dbe0e2, type: 3}
   isDead: 0
-  bloodSplashParticles: {fileID: 5488940780521944359}
+  bloodSplashParticles: {fileID: 7216550762264632955}
   bloodPuddle: {fileID: 5667244370773096370}
   thisAnimalType: 0
 --- !u!65 &4650455358486408560
@@ -947,6 +948,27 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5638041095399054854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4368823500412597695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f67db705fc0628a44954ea0e864791cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  possibleLoot:
+  - item: {fileID: 4137432047954703436, guid: cee8816e35236f347b920c275c2ba9e0, type: 3}
+    amountMin: 0
+    amountMax: 1
+  - item: {fileID: 6696230158228360958, guid: 89b3686bff6c49347a9ddce338a5c434, type: 3}
+    amountMin: 1
+    amountMax: 1
+  finalLoot: []
+  wasLootCalculated: 0
 --- !u!1 &5183286493261754629
 GameObject:
   m_ObjectHideFlags: 0
@@ -1005,8 +1027,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5667244370773096370}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.6971626, y: -0.118170634, z: -0.118170634, w: 0.6971626}
-  m_LocalPosition: {x: 0, y: 0.017, z: 0}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: -0.016, z: 0}
   m_LocalScale: {x: 0.03, y: 0.03, z: 0.03}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1407,7 +1429,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8052528285063121442}
   m_LocalEulerAnglesHint: {x: -0.000009818396, y: 92.86037, z: -166.60182}
---- !u!1001 &7335713385939360500
+--- !u!1001 &5604523394601038248
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -1459,22 +1481,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Particle System
       objectReference: {fileID: 0}
-    - target: {fileID: 3017714097359957974, guid: 27f95b671e70a724182849123fba5674, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27f95b671e70a724182849123fba5674, type: 3}
---- !u!4 &5488940780521944353 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3017714097359957973, guid: 27f95b671e70a724182849123fba5674, type: 3}
-  m_PrefabInstance: {fileID: 7335713385939360500}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &5488940780521944359 stripped
+--- !u!198 &7216550762264632955 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 3017714097359957971, guid: 27f95b671e70a724182849123fba5674, type: 3}
-  m_PrefabInstance: {fileID: 7335713385939360500}
+  m_PrefabInstance: {fileID: 5604523394601038248}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7216550762264632957 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3017714097359957973, guid: 27f95b671e70a724182849123fba5674, type: 3}
+  m_PrefabInstance: {fileID: 5604523394601038248}
   m_PrefabAsset: {fileID: 0}
