@@ -1,0 +1,17 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/settingmenustyle.uss?fileID=7433441132597879392&amp;guid=7153eac296f3ef843b9cab2e5b3f9d95&amp;type=3#settingmenustyle" />
+    <ui:VisualElement name="gamebg" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/ART/%E1%BA%A2nh%20ch%E1%BB%A5p%20m%C3%A0n%20h%C3%ACnh%202024-11-29%20095147.png?fileID=2800000&amp;guid=88f5ed83b8381734e9ebb4f3e19104ea&amp;type=3#Ảnh chụp màn hình 2024-11-29 095147&quot;); justify-content: center; align-items: center;">
+        <ui:VisualElement name="settingmenu" style="flex-grow: 0; width: 800px; height: 800px; background-color: rgba(0, 0, 0, 0.78); border-left-color: rgb(230, 230, 230); border-right-color: rgb(230, 230, 230); border-top-color: rgb(230, 230, 230); border-bottom-color: rgb(230, 230, 230); border-top-width: 5px; border-right-width: 5px; border-bottom-width: 5px; border-left-width: 5px; border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px;">
+            <ui:Label tabindex="-1" text="Setting Menu" parse-escape-sequences="true" display-tooltip-when-elided="true" name="settingLabel" style="font-size: 70px; -unity-font-style: bold; -unity-text-align: middle-center; color: rgb(230, 230, 230);" />
+            <ui:VisualElement style="flex-grow: 0; height: 2px; background-color: rgb(230, 230, 230); margin-top: 5px;" />
+            <ui:VisualElement name="settingbutton" style="flex-grow: 1; margin-top: 5px; align-items: center; justify-content: space-between;">
+                <ui:VisualElement style="flex-grow: 1;">
+                    <ui:Slider label="Master" high-value="100" class="slider" style="font-size: 40px;" />
+                    <ui:Slider label="Music" high-value="100" class="slider" style="font-size: 40px;" />
+                    <ui:Slider label="Effects" high-value="100" class="slider" style="font-size: 40px;" />
+                </ui:VisualElement>
+                <ui:Button text="Back" parse-escape-sequences="true" display-tooltip-when-elided="true" class="bachbutton" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

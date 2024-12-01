@@ -1,0 +1,56 @@
+.main-menu-button {
+    width: 450px;
+    height: 120px;
+    margin-top: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    -unity-font-style: bold;
+    font-size: 40px;
+    color: rgb(230, 230, 230);
+    border-left-color: rgb(230, 230, 230);
+    border-right-color: rgb(230, 230, 230);
+    border-top-color: rgb(230, 230, 230);
+    border-bottom-color: rgb(230, 230, 230);
+    border-top-width: 5px;
+    border-right-width: 5px;
+    border-bottom-width: 5px;
+    border-left-width: 5px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    text-shadow: 2px 2px 0 rgb(0, 0, 0);
+}
+
+.exit-button {
+    background-color: rgb(229, 75, 70);
+}
+
+.exit-button:hover {
+    background-color: rgb(152, 47, 44);
+}
+
+.play-button {
+    background-color: rgb(63, 175, 64);
+}
+
+.play-button:hover {
+    background-color: rgb(69, 141, 70);
+}
+
+.load-button {
+    background-color: rgb(95, 97, 218);
+}
+
+.load-button:hover {
+    background-color: rgb(33, 33, 93);
+}
+
+.setting-button {
+    background-color: rgb(222, 208, 43);
+}
+
+.setting-button:hover {
+    background-color: rgb(157, 148, 42);
+}
