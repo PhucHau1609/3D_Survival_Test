@@ -195,27 +195,32 @@ public class CraftingSystem : MonoBehaviour
             isOpen = true;
 
         }
-        else if (Input.GetKeyDown(KeyCode.C) && isOpen)
+        else if (Input.GetKeyDown(KeyCode.C) && isOpen) //dang sua luc 4h10
         {
-            craftingScreenUI.SetActive(false);
-            toolsScreenUI.SetActive(false);
-            survivalScreenUI.SetActive(false);
-            refineScreenUI.SetActive(false);
-            constructionScreenUI.SetActive(false);
-
-            if(!InventorySystem.Instance.isOpen)
-            {
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
-
-                SelectionManager.Instance.EnableSelection();
-                SelectionManager.Instance.GetComponent<SelectionManager>().enabled = true;
-
-            }
-
-            isOpen = false;
+            CloseCraftingSystemUI();
         }
     }
+
+    public void CloseCraftingSystemUI()
+    {
+        craftingScreenUI.SetActive(false);
+        toolsScreenUI.SetActive(false);
+        survivalScreenUI.SetActive(false);
+        refineScreenUI.SetActive(false);
+        constructionScreenUI.SetActive(false);
+
+        if (!InventorySystem.Instance.isOpen)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+
+            SelectionManager.Instance.EnableSelection();
+            SelectionManager.Instance.GetComponent<SelectionManager>().enabled = true;
+
+        }
+
+        isOpen = false;
+    }    
 
     public void RefreshNeededItems()
     {

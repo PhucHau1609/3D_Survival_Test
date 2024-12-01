@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Checkpoint : ScriptableObject
 {
-    public string name;
+    public string name; //rename
     public bool isCompleted = false;
     
 }

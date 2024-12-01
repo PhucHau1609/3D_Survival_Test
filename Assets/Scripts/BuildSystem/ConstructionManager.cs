@@ -65,7 +65,7 @@ public class ConstructionManager : MonoBehaviour
 
         foreach (GameObject ghost in ghostlist)
         {
-            Debug.Log(ghost);
+            //Debug.Log(ghost);
             allGhostsInExistence.Add(ghost);
         }
     }

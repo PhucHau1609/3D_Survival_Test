@@ -323,7 +323,7 @@ public class SaveManager : MonoBehaviour
 
     private IEnumerator DelayLoading(int slotNumber)
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(5); //vua sua o day
 
         LoadGame(slotNumber);
 
