@@ -54,3 +54,11 @@
 .setting-button:hover {
     background-color: rgb(157, 148, 42);
 }
+
+.how-to-play-button {
+    background-color: rgb(207, 125, 41);
+}
+
+.how-to-play-button:hover {
+    background-color: rgb(115, 71, 27);
+}

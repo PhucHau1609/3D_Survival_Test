@@ -6,11 +6,11 @@
             <ui:VisualElement style="flex-grow: 0; height: 2px; background-color: rgb(230, 230, 230); margin-top: 5px;" />
             <ui:VisualElement name="settingbutton" style="flex-grow: 1; margin-top: 5px; align-items: center; justify-content: space-between;">
                 <ui:VisualElement style="flex-grow: 1;">
-                    <ui:Slider label="Master" high-value="100" class="slider" style="font-size: 40px;" />
-                    <ui:Slider label="Music" high-value="100" class="slider" style="font-size: 40px;" />
-                    <ui:Slider label="Effects" high-value="100" class="slider" style="font-size: 40px;" />
+                    <ui:Slider label="Master" high-value="100" name="slider1" low-value="0" show-input-field="false" class="slider" style="font-size: 40px;" />
+                    <ui:Slider label="Music" high-value="100" name="slider2" low-value="0" class="slider" style="font-size: 40px;" />
+                    <ui:Slider label="Effects" high-value="100" name="slider3" low-value="0" class="slider" style="font-size: 40px;" />
                 </ui:VisualElement>
-                <ui:Button text="Back" parse-escape-sequences="true" display-tooltip-when-elided="true" class="bachbutton" />
+                <ui:Button text="Back" parse-escape-sequences="true" display-tooltip-when-elided="true" name="BackButton" class="bachbutton" />
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
