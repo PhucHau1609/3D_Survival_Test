@@ -680,7 +680,7 @@ GameObject:
   - component: {fileID: 8782111473297560842}
   - component: {fileID: 4650455358486408560}
   - component: {fileID: 2117005072644881030}
-  - component: {fileID: 2560329918658953466}
+  - component: {fileID: 5638041095399054854}
   m_Layer: 0
   m_Name: WhiteRabbit
   m_TagString: Untagged
@@ -705,7 +705,7 @@ Transform:
   - {fileID: 3568352428158765218}
   - {fileID: 3900677982281147465}
   - {fileID: 4515444412063874031}
-  - {fileID: 6985560628487937722}
+  - {fileID: 7216550762264632957}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &6868518526728888877
@@ -828,7 +828,7 @@ MonoBehaviour:
   rabbitHitAndScrem: {fileID: 8300000, guid: 42dd0ed092c0c274f9db5c285dcab7ea, type: 3}
   rabbitHitAndDie: {fileID: 8300000, guid: 5ad0eac1c59efe841a9c9b06a0dbe0e2, type: 3}
   isDead: 0
-  bloodSplashParticles: {fileID: 6985560628487937724}
+  bloodSplashParticles: {fileID: 7216550762264632955}
   bloodPuddle: {fileID: 5667244370773096370}
   thisAnimalType: 0
 --- !u!65 &4650455358486408560
@@ -948,7 +948,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &2560329918658953466
+--- !u!114 &5638041095399054854
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1429,7 +1429,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8052528285063121442}
   m_LocalEulerAnglesHint: {x: -0.000009818396, y: 92.86037, z: -166.60182}
---- !u!1001 &5264884551157444975
+--- !u!1001 &5604523394601038248
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -1438,20 +1438,8 @@ PrefabInstance:
     m_TransformParent: {fileID: 3013820957596554774}
     m_Modifications:
     - target: {fileID: 3017714097359957973, guid: 27f95b671e70a724182849123fba5674, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.26898596
-      objectReference: {fileID: 0}
-    - target: {fileID: 3017714097359957973, guid: 27f95b671e70a724182849123fba5674, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.268986
-      objectReference: {fileID: 0}
-    - target: {fileID: 3017714097359957973, guid: 27f95b671e70a724182849123fba5674, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.268986
-      objectReference: {fileID: 0}
-    - target: {fileID: 3017714097359957973, guid: 27f95b671e70a724182849123fba5674, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.373
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3017714097359957973, guid: 27f95b671e70a724182849123fba5674, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1498,13 +1486,13 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27f95b671e70a724182849123fba5674, type: 3}
---- !u!4 &6985560628487937722 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3017714097359957973, guid: 27f95b671e70a724182849123fba5674, type: 3}
-  m_PrefabInstance: {fileID: 5264884551157444975}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &6985560628487937724 stripped
+--- !u!198 &7216550762264632955 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 3017714097359957971, guid: 27f95b671e70a724182849123fba5674, type: 3}
-  m_PrefabInstance: {fileID: 5264884551157444975}
+  m_PrefabInstance: {fileID: 5604523394601038248}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7216550762264632957 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3017714097359957973, guid: 27f95b671e70a724182849123fba5674, type: 3}
+  m_PrefabInstance: {fileID: 5604523394601038248}
   m_PrefabAsset: {fileID: 0}
