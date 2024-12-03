@@ -13,58 +13,50 @@ MonoBehaviour:
   m_Name: First_NPC_Quest_1
   m_EditorClassIdentifier: 
   initialDialog:
-  - "Hey,\r\nI didn't expect to meet anyone out here. \nI'm Melina, I live in the
-    nearby village."
-  - 'I''m suppose to help my father get rabbit hides,
-
-    He is a famous leather-worker
-    in our village.'
-  - "He will never say this, but I know he wanted to have a son. \nOne that could
-    help him with the family business and take over it some day. \nSometimes I just
-    feel like a disappointment..."
-  - "I came here to prove that I can help.\n\r\nBut, I can't kill these rabbits!
-    \nThey are so fluffy and cute. \nI am useless."
-  - 'Wait! Maybe you can help me?
-
-
-
-    Don''t worry, I will pay you.'
+  - "Hey! I didn\u2019t expect to see anyone out here."
+  - "I\u2019m Melina. I live in the nearby village. My father\u2019s a famous leather-worker\u2014everyone
+    admires his work. He\u2019s been making tools and garments for years."
+  - "He\u2019s always dreamed of having a son to pass on his craft, but instead,
+    he got... me. I try my best, but I think he wishes I could be more helpful."
+  - "That\u2019s why I came here\u2014to collect rabbit hides and prove myself. But...\n\nI
+    just can\u2019t do it. The rabbits are too adorable. Every time I try, I freeze.
+    I feel like such a failure."
+  - "Wait! You look capable. Could you help me gather 5 rabbit hides? I\u2019ll make
+    it worth your while!"
   initialDialogClips:
-  - {fileID: 8300000, guid: 7f4ef03b0f868924c94991bd747efa36, type: 3}
-  - {fileID: 8300000, guid: cbea9ec3e967e1045935a47041a87466, type: 3}
-  - {fileID: 8300000, guid: a737bab7ab6fee24a974065bc6dc479f, type: 3}
-  - {fileID: 8300000, guid: 103e5fd22b825d44da4e66f9a07acf08, type: 3}
-  - {fileID: 8300000, guid: 538c7a014d250454aa0c6704b6a24c3f, type: 3}
+  - {fileID: 8300000, guid: dc46ce95499b2e146b25be93094503e7, type: 3}
+  - {fileID: 8300000, guid: 542cb0ac8fbf47443adf7961f05587c7, type: 3}
+  - {fileID: 8300000, guid: 38e6d7197104ff24f8873b7e2f096113, type: 3}
+  - {fileID: 8300000, guid: 8dbdfdfc42c03a749a082a4b47a700ad, type: 3}
+  - {fileID: 8300000, guid: 121599d60f8a6bf42bb13ba70f349240, type: 3}
   acceptOption: 'Sure, I will help you.
 
     I can use some money.'
-  acceptAnswer: 'That''s awsome!
-
-    If you can bring me 7 rabbit hides, it will
-    be more than enough.'
-  acceptAnswerClip: {fileID: 8300000, guid: 8b2a11ea04f35c1478d615cc107e9296, type: 3}
+  acceptAnswer: "Really? Thank you so much! I knew I could count on you. You\u2019ll
+    find rabbits near the tall grass in the clearing. Please hurry\u2014I don\u2019t
+    want my father to think I\u2019ve failed again."
+  acceptAnswerClip: {fileID: 8300000, guid: 43fe24f1263bff949a1460c848bfd068, type: 3}
   declineOption: I'm sorry, but I can't kill them as well.
-  declineAnswer: 'Oh well, it was worth a try.
-
-    If you change your mind, please
-    come back.'
-  declineAnswerClip: {fileID: 8300000, guid: 61375aef95ca5ed4dbed78f59987d83c, type: 3}
-  comebackAfterDecline: So, did you change your mind?
-  comebackAfterDeclineClip: {fileID: 8300000, guid: 59fce953acc21074da48beca39cc2fec, type: 3}
-  comebackInProgress: It is still not enough, make sure to check in the tall grass
-    as well.
-  comebackInProgressClip: {fileID: 8300000, guid: bfdf947317719584d846186b53c4d027, type: 3}
-  comebackCompleted: 'Those poor things.
-
-    As promised, here is your reward.'
-  comebackCompletedClip: {fileID: 8300000, guid: 37cad970127d84641a778aa45ef44897, type: 3}
-  finalWords: I hope this will make my father proud.
-  finalWordsClip: {fileID: 8300000, guid: 789e77ad04907d440a9317203d3d2252, type: 3}
+  declineAnswer: "Oh\u2026 I understand. It\u2019s okay\u2014I\u2019ll figure something
+    out. If you change your mind, I\u2019ll be here. I could really use your help."
+  declineAnswerClip: {fileID: 8300000, guid: f526a4142cfd26841b6a64710c960724, type: 3}
+  comebackAfterDecline: "So, did you change your mind? I still need those rabbit
+    hides if you\u2019re willing to help me out."
+  comebackAfterDeclineClip: {fileID: 8300000, guid: 0787235c2a379324c9ba32c7bea77bbb, type: 3}
+  comebackInProgress: "It\u2019s still not enough. Make sure to check the tall grass\u2014there
+    are plenty of rabbits hiding there."
+  comebackInProgressClip: {fileID: 8300000, guid: 642e9bc409286a5458ab0167e317b572, type: 3}
+  comebackCompleted: "You did it! I can\u2019t believe it. Those poor rabbits...
+    but I guess it had to be done. Thank you!"
+  comebackCompletedClip: {fileID: 8300000, guid: c71b9911a673bb1488ac5c84bf2bbbde, type: 3}
+  finalWords: "Here\u2019s your reward, as promised. I really hope this will make
+    my father proud. Maybe\u2026 maybe I\u2019m not as useless as I thought."
+  finalWordsClip: {fileID: 8300000, guid: 12d2b3aa39e4e6b4a80a4e2270cca635, type: 3}
   coinReward: 25
   rewardItem1: Stone
   rewardItem2: 
   firstRequirmentItem: Rabbit Hide
-  firstRequirementAmount: 7
+  firstRequirementAmount: 5
   secondRequirmentItem: 
   secondRequirementAmount: 0
   hasCheckpoints: 0

@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f049b7e51cb4e74badae29b9c9e835f, type: 3}
+  m_Name: First_NPC_Quest_4
+  m_EditorClassIdentifier: 
+  initialDialog:
+  - "Hey, it\u2019s you again. I was hoping you\u2019d come back\u2026"
+  - "I really need your help again\u2026 This is\u2026 personal. It\u2019s about
+    a necklace I lost a long time ago. It\u2019s not just any necklace, though. It
+    was my mother\u2019s, and it was passed down from her ancestors. My father always
+    kept it safe, but it went missing when I was exploring the jungle."
+  - "This necklace is special. It\u2019s more than just a family heirloom. It\u2019s
+    said to have been blessed by the island\u2019s ancient spirits. But there\u2019s
+    more to it that I don\u2019t fully understand\u2026"
+  - "When I was younger, my father used to tell me stories about how the island hides
+    its secrets. Some people believe the necklace could unlock those secrets. I don\u2019t
+    know if it\u2019s true, but I need to find it. Please, can you help me?"
+  - "I know it sounds silly, but I believe that if we find it, we might learn something
+    about the island that no one else knows\u2026"
+  initialDialogClips:
+  - {fileID: 8300000, guid: 94b7c4801de82de468b26d453f89edab, type: 3}
+  - {fileID: 8300000, guid: f09433f1450d7ee4aa9a13d532efa33d, type: 3}
+  - {fileID: 8300000, guid: 29a1b21cd4b46ff4cab9e7a6a334e9d2, type: 3}
+  - {fileID: 8300000, guid: 8b83718b12af30740a505e0e1cc8e07e, type: 3}
+  - {fileID: 8300000, guid: 7f74152166606c44c9e07787a86ff935, type: 3}
+  acceptOption: 'Sure, I will help you.
+
+    I can use some money.'
+  acceptAnswer: "Thank you so much. You have no idea how much this means to me.\n\nThe
+    necklace should be near the river, close to the large stone monument. It\u2019s
+    where I remember last seeing it."
+  acceptAnswerClip: {fileID: 8300000, guid: b6525d8c6f9c98c47a68a491a72d51b4, type: 3}
+  declineOption: I'm sorry, but I can't help you.
+  declineAnswer: "I understand if you don\u2019t want to help, it\u2019s a lot to
+    ask. But please, if you change your mind, I\u2019ll be here."
+  declineAnswerClip: {fileID: 8300000, guid: a17d8098a6ceb9b4980db50a10209226, type: 3}
+  comebackAfterDecline: "So, did you change to find the necklace? I really need it
+    to uncover the secrets of this island, if you\u2019re willing to help me out."
+  comebackAfterDeclineClip: {fileID: 8300000, guid: a33a5722bb4bf5e4d9c6f6b478e112ad, type: 3}
+  comebackInProgress: "You didn\u2019t find the necklace? Please, don\u2019t give
+    up. I know it's somewhere near the river, close to the stone monument."
+  comebackInProgressClip: {fileID: 8300000, guid: 976aeccecef58cb48892019b26e62bcf, type: 3}
+  comebackCompleted: "You found it? Really? Oh, thank you!\nThis\u2026 this is it!
+    It\u2019s just as I remembered.\nWait... there\u2019s something on the back.
+    It looks like a map.\nI\u2019ve seen something like this before in my father\u2019s
+    old journals. This map shows a hidden part of the island... and a treasure that
+    no one has ever found."
+  comebackCompletedClip: {fileID: 8300000, guid: f220c909e8e8df8489b8782249c5b66c, type: 3}
+  finalWords: "Here\u2019s your reward, just as promised. This necklace\u2026 it
+    holds more meaning than anything I can give you."
+  finalWordsClip: {fileID: 8300000, guid: 6083cb52fe0561f4a8c4cfadb5ad6530, type: 3}
+  coinReward: 25
+  rewardItem1: Stone
+  rewardItem2: 
+  firstRequirmentItem: Necklace
+  firstRequirementAmount: 1
+  secondRequirmentItem: 
+  secondRequirementAmount: 0
+  hasCheckpoints: 0
+  checkpoints: []

@@ -27,8 +27,6 @@ public class hdmenu : MonoBehaviour
     private void Showback()
     {
         mainpanel.SetActive(true);
-        settingpanel.SetActive(false);
-        loadpanel.SetActive(false);
         hdpanel.SetActive(false);
     }
 }

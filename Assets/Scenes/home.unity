@@ -206,6 +206,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   backButton: {fileID: 1551217008}
   mainpanel: {fileID: 1489340010}
+  settingpanel: {fileID: 0}
+  loadpanel: {fileID: 0}
   hdpanel: {fileID: 118711866}
 --- !u!1 &129842862
 GameObject:
@@ -2582,7 +2584,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: d5a8582f57fb6f34ba5c98eedba149c9, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2678,7 +2680,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: cb1d15d62e1627e489ab9a7530401e65, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -3149,6 +3151,8 @@ MonoBehaviour:
   settingMenuDocument: {fileID: 1832173398}
   mainpanel: {fileID: 1489340010}
   settingpanel: {fileID: 1832173396}
+  loadpanel: {fileID: 0}
+  hdpanel: {fileID: 0}
 --- !u!1 &1837048262
 GameObject:
   m_ObjectHideFlags: 0
@@ -3449,7 +3453,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loadMenuDocument: {fileID: 1966344982}
   mainpanel: {fileID: 1489340010}
+  settingpanel: {fileID: 0}
   loadpanel: {fileID: 1966344981}
+  hdpanel: {fileID: 0}
 --- !u!1 &1975311238
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f049b7e51cb4e74badae29b9c9e835f, type: 3}
+  m_Name: First_NPC_Quest_2
+  m_EditorClassIdentifier: 
+  initialDialog:
+  - "Hey, it\u2019s you again! Thank you so much for helping me last time. My father
+    was really impressed with the rabbit hides you brought back."
+  - "But\u2026 there\u2019s something else I need help with. It\u2019s about an old
+    map my father mentioned. He said it shows secret paths and hidden places on the
+    island."
+  - "I\u2019ve tried looking for it myself, but it\u2019s rumored to be hidden in
+    the old ruins near the lake to the north. And, well\u2026 I\u2019m not exactly
+    good with exploring dangerous places."
+  - "Would you be willing to help me again? If you can find the map piece, I\u2019ll
+    make sure you\u2019re rewarded properly. What do you say?"
+  initialDialogClips:
+  - {fileID: 8300000, guid: e76bf497fd252e64ba02bac5119fdb92, type: 3}
+  - {fileID: 8300000, guid: 310c93a19f597b942b215baba1ca2fc1, type: 3}
+  - {fileID: 8300000, guid: 1ec60a1c1c7cd04479b2902ab96578af, type: 3}
+  - {fileID: 8300000, guid: 560e6ae8a99d74e4c894a322c3ea9304, type: 3}
+  acceptOption: 'Sure, I will help you.
+
+    I can use some money.'
+  acceptAnswer: "Thank you so much! The ruins might be a little hard to spot, but
+    they\u2019re near the lake to the north. Be careful\u2014there might be traps
+    or wild animals around."
+  acceptAnswerClip: {fileID: 8300000, guid: 5bb5a1a42cb5aaa44a195d5e34da2195, type: 3}
+  declineOption: I'm sorry, but I can't help you.
+  declineAnswer: "Oh\u2026 I understand. It\u2019s probably a lot to ask. But if
+    you change your mind, please come back\u2014I don\u2019t know who else I can
+    trust with this."
+  declineAnswerClip: {fileID: 8300000, guid: a803c35c95c41ca4ea49185a6ad83146, type: 3}
+  comebackAfterDecline: "So, did you change your mind? I still need that map if you\u2019re
+    willing to help me out."
+  comebackAfterDeclineClip: {fileID: 8300000, guid: bbefdb5e6451e3040b8f72daf3be666f, type: 3}
+  comebackInProgress: "You\u2019re back, but you didn\u2019t find the map? Please
+    keep looking\u2014it\u2019s really important to me and my father."
+  comebackInProgressClip: {fileID: 8300000, guid: 13d84bae3fbd9854aaf07c3018151225, type: 3}
+  comebackCompleted: "You found it! I can\u2019t believe it. Thank you so much! This
+    map might hold secrets about the island that we never knew."
+  comebackCompletedClip: {fileID: 8300000, guid: 98e1c357161fd484bad5901e7c99c586, type: 3}
+  finalWords: "Here\u2019s your reward, as promised. I can\u2019t express how grateful
+    I am. This map means so much to my father and our village.\n\nWith this, we might
+    finally uncover the truth about this island. I\u2019ll study it carefully and
+    share what I find. If I discover anything interesting, I\u2019ll let you know."
+  finalWordsClip: {fileID: 8300000, guid: ae3c3753dbe40344f8034dfc635a6558, type: 3}
+  coinReward: 25
+  rewardItem1: Stone
+  rewardItem2: 
+  firstRequirmentItem: Map
+  firstRequirementAmount: 1
+  secondRequirmentItem: 
+  secondRequirementAmount: 0
+  hasCheckpoints: 0
+  checkpoints: []

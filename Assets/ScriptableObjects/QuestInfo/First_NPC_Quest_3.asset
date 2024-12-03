@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f049b7e51cb4e74badae29b9c9e835f, type: 3}
+  m_Name: First_NPC_Quest_3
+  m_EditorClassIdentifier: 
+  initialDialog:
+  - "Oh, it's you again! I was just thinking about you. Thank you so much for helping
+    me with the map last time. I\u2019ve been going through it, and I found something
+    strange."
+  - "There\u2019s a note in the margin of the map, something my father wrote. It
+    mentions an old book\u2014supposedly a journal\u2014that holds the secrets of
+    the island. It's supposed to be hidden in the library ruins on the west side."
+  - "I can\u2019t go there on my own. The place is crawling with wild creatures,
+    and I'm not equipped for a fight. But\u2026 maybe you can help me again?"
+  - "If you could find this book and bring it back, I\u2019ll be forever grateful.
+    I don\u2019t know what this journal holds, but it could be very important."
+  - Please, would you help me?
+  initialDialogClips:
+  - {fileID: 8300000, guid: 331d428e69b9b414fac5721f8aad7616, type: 3}
+  - {fileID: 8300000, guid: 52ee85ec0aa474945b229de470f28e30, type: 3}
+  - {fileID: 8300000, guid: 2440f41707ebe9a479ec57dfc18de2d0, type: 3}
+  - {fileID: 8300000, guid: 8137433caf34fe0459bd5c01ab0d838b, type: 3}
+  - {fileID: 8300000, guid: e4ce3b7c4333bc9499c2908f40faf207, type: 3}
+  acceptOption: 'Sure, I will help you.
+
+    I can use some money.'
+  acceptAnswer: "Thank you! The library ruins are to the west, near the cliffside.
+    It\u2019s an old place, overgrown with plants, and I\u2019ve heard it\u2019s
+    haunted.\n\nPlease be careful. If you can bring back that book, I\u2019ll be
+    sure to reward you generously."
+  acceptAnswerClip: {fileID: 8300000, guid: 01022c6ed792f0247b6b892db0c03f8e, type: 3}
+  declineOption: I'm sorry, but I can't help you.
+  declineAnswer: "Oh\u2026 I see. That\u2019s okay. If you change your mind, please
+    let me know. I just feel like we\u2019re so close to uncovering something big."
+  declineAnswerClip: {fileID: 8300000, guid: d75b9ca4c2e1cc546a2ce6bef4f9619b, type: 3}
+  comebackAfterDecline: So, have you reconsidered? I still need that book if you're
+    willing to help me find it.
+  comebackAfterDeclineClip: {fileID: 8300000, guid: 8b236a62aa88a7f4fa3f278fa28582d2, type: 3}
+  comebackInProgress: "You didn\u2019t find the journal? Please, don\u2019t give
+    up. I know it\u2019s somewhere in those ruins."
+  comebackInProgressClip: {fileID: 8300000, guid: f4f0fc7ef81bcb2429b7e18ce7e21a8c, type: 3}
+  comebackCompleted: "You did it! You actually found the book! This\u2026 this could
+    change everything!\nLook, my father wrote all about the island, the old inhabitants,
+    the legends of treasure\u2026 everything. It\u2019s all here!\nThank you for
+    bringing this to me. You\u2019ve really helped us more than you can imagine."
+  comebackCompletedClip: {fileID: 8300000, guid: fbe0856cc1b392c459e70161aabf82d7, type: 3}
+  finalWords: "Here\u2019s your reward, just as promised. This book\u2026 it\u2019s
+    more valuable than anything I can give you."
+  finalWordsClip: {fileID: 8300000, guid: 357fc2a578544a946942c7a5ab852afb, type: 3}
+  coinReward: 25
+  rewardItem1: Stone
+  rewardItem2: 
+  firstRequirmentItem: Book
+  firstRequirementAmount: 1
+  secondRequirmentItem: 
+  secondRequirementAmount: 0
+  hasCheckpoints: 0
+  checkpoints: []
