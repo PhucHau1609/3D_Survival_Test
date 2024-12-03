@@ -16,10 +16,10 @@ public class CraftingSystem : MonoBehaviour
     Button toolsBTN, survivalBTN, refineBTN, constructionBTN;
 
     //Craft Buttons
-    Button craftAxeBTN, craftPlankBTN, craftFoundationBTN, craftWallBTN, craftStorageBoxBTN, craftBowBTN, craftArrowBTN, craftHoeBTN;
+    Button craftAxeBTN, craftPlankBTN, craftFoundationBTN, craftWallBTN, craftStorageBoxBTN, craftBowBTN, craftArrowBTN, craftHoeBTN, craftCampfireBTN;
 
     //Requirement Text
-    Text AxeReq1, AxeReq2, PlankReq1, FoundationReq1, WallReq1, StorageBoxReq1, BowReq1, ArrowReq1, ArrowReq2, HoeReq1, HoeReq2;
+    Text AxeReq1, AxeReq2, PlankReq1, FoundationReq1, WallReq1, StorageBoxReq1, BowReq1, ArrowReq1, ArrowReq2, HoeReq1, HoeReq2, CampfireReq1, CampfireReq2;
 
     public bool isOpen;
 
@@ -32,6 +32,7 @@ public class CraftingSystem : MonoBehaviour
     private Blueprint BowBLP;
     private Blueprint ArrowBLP;
     private Blueprint HoeBLP;
+    private Blueprint CampfireBLP;
 
 
     public static CraftingSystem Instance {get; set;}
@@ -58,6 +59,7 @@ public class CraftingSystem : MonoBehaviour
         BowBLP = new Blueprint("Bow", 1, 1, "Stick", 3, "", 0);
         ArrowBLP = new Blueprint("Arrow", 4, 1, "Stone", 2, "Stick", 2);
         HoeBLP = new Blueprint("Hoe", 1, 1, "Stone", 5, "Stick", 3);
+        CampfireBLP = new Blueprint("Campfire",1, 1, "Stone", 5, "Stick", 5);
 
 
         isOpen = false;
@@ -124,6 +126,13 @@ public class CraftingSystem : MonoBehaviour
 
         craftHoeBTN = toolsScreenUI.transform.Find("Hoe").transform.Find("Button").GetComponent<Button>();
         craftHoeBTN.onClick.AddListener(delegate{CraftAnyItem(HoeBLP);});//
+
+        //Campfire
+        CampfireReq1 = survivalScreenUI.transform.Find("Campfire").transform.Find("Req1").GetComponent<Text>();
+        CampfireReq2 = survivalScreenUI.transform.Find("Campfire").transform.Find("Req2").GetComponent<Text>();
+
+        craftCampfireBTN = survivalScreenUI.transform.Find("Campfire").transform.Find("Button").GetComponent<Button>();
+        craftCampfireBTN.onClick.AddListener(delegate{CraftAnyItem(CampfireBLP);});//
 
     }
 
@@ -374,6 +383,19 @@ public class CraftingSystem : MonoBehaviour
         else
         {
             craftHoeBTN.gameObject.SetActive(false);
+        }
+
+        //---Campfire---//
+        CampfireReq1.text = "5 Stone [" + stone_count + "]";
+        CampfireReq2.text = "5 Stick [" + stick_count + "]";
+
+        if (stone_count >= 5 && stick_count >= 5)
+        {
+            craftCampfireBTN.gameObject.SetActive(true);
+        }
+        else
+        {
+            craftCampfireBTN.gameObject.SetActive(false);
         }
     }
 }
