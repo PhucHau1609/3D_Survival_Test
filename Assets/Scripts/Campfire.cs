@@ -15,6 +15,7 @@ public class Campfire : MonoBehaviour
     public string readyFood;
 
     public GameObject fire;
+    public GameObject rawMeat;
 
     private void Update()
     {
@@ -34,9 +35,11 @@ public class Campfire : MonoBehaviour
         {
             cookingTimer -= Time.deltaTime;
             fire.SetActive(true);
+            rawMeat.SetActive(true);
         }
         else
         {
+            rawMeat.SetActive(false);
             fire.SetActive(false);
         }
 

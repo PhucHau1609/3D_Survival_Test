@@ -63,7 +63,7 @@ MonoBehaviour:
   coinReward: 25
   rewardItem1: Stone
   rewardItem2: 
-  firstRequirmentItem: RabbitHide
+  firstRequirmentItem: Rabbit Hide
   firstRequirementAmount: 7
   secondRequirmentItem: 
   secondRequirementAmount: 0

@@ -206,7 +206,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   backButton: {fileID: 1551217008}
   mainpanel: {fileID: 1489340010}
-  hdpanel: {fileID: 0}
+  hdpanel: {fileID: 118711866}
 --- !u!1 &129842862
 GameObject:
   m_ObjectHideFlags: 0
@@ -2306,7 +2306,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1489340011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3403,7 +3403,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1966344982
 MonoBehaviour:
   m_ObjectHideFlags: 0

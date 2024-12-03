@@ -698,7 +698,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5830557227929010386}
@@ -823,7 +823,7 @@ MonoBehaviour:
   animalName: Rabbit
   playerInRange: 0
   currentHealth: 0
-  maxHealth: 40
+  maxHealth: 60
   soundChannel: {fileID: 2117005072644881030}
   rabbitHitAndScrem: {fileID: 8300000, guid: 42dd0ed092c0c274f9db5c285dcab7ea, type: 3}
   rabbitHitAndDie: {fileID: 8300000, guid: 5ad0eac1c59efe841a9c9b06a0dbe0e2, type: 3}
@@ -962,7 +962,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   possibleLoot:
   - item: {fileID: 4137432047954703436, guid: cee8816e35236f347b920c275c2ba9e0, type: 3}
-    amountMin: 0
+    amountMin: 1
     amountMax: 1
   - item: {fileID: 6696230158228360958, guid: 89b3686bff6c49347a9ddce338a5c434, type: 3}
     amountMin: 1
@@ -1439,7 +1439,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3017714097359957973, guid: 27f95b671e70a724182849123fba5674, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: 3017714097359957973, guid: 27f95b671e70a724182849123fba5674, type: 3}
       propertyPath: m_LocalPosition.y

@@ -20,6 +20,12 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector3 lastPosition = new Vector3(0f, 0f, 0f);
     public bool isMoving;
+    Animator animator;
+
+    private void Start()
+    {
+        animator = GetComponentInChildren<Animator>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -61,7 +67,7 @@ public class PlayerMovement : MonoBehaviour
         if (lastPosition != gameObject.transform.position && isGrounded == true)
         {
             isMoving = true;
-
+            animator.SetFloat("Run",velocity.x);
             SoundManager.Instance.PlaySound(SoundManager.Instance.grassWalkSound);
         }
         else
