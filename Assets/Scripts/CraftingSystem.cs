@@ -16,10 +16,10 @@ public class CraftingSystem : MonoBehaviour
     Button toolsBTN, survivalBTN, refineBTN, constructionBTN;
 
     //Craft Buttons
-    Button craftAxeBTN, craftPlankBTN, craftFoundationBTN, craftWallBTN, craftStorageBoxBTN;
+    Button craftAxeBTN, craftPlankBTN, craftFoundationBTN, craftWallBTN, craftStorageBoxBTN, craftBowBTN, craftArrowBTN, craftHoeBTN;
 
     //Requirement Text
-    Text AxeReq1, AxeReq2, PlankReq1, FoundationReq1, WallReq1, StorageBoxReq1;
+    Text AxeReq1, AxeReq2, PlankReq1, FoundationReq1, WallReq1, StorageBoxReq1, BowReq1, ArrowReq1, ArrowReq2, HoeReq1, HoeReq2;
 
     public bool isOpen;
 
@@ -29,6 +29,9 @@ public class CraftingSystem : MonoBehaviour
     private Blueprint FoundationBLP;
     private Blueprint WallBLP;
     private Blueprint StorageBoxBLP;
+    private Blueprint BowBLP;
+    private Blueprint ArrowBLP;
+    private Blueprint HoeBLP;
 
 
     public static CraftingSystem Instance {get; set;}
@@ -52,6 +55,9 @@ public class CraftingSystem : MonoBehaviour
         FoundationBLP = new Blueprint("Foundation", 1, 1, "Plank", 4, "", 0);
         WallBLP = new Blueprint("Wall", 1, 1, "Plank", 2, "", 0);
         StorageBoxBLP = new Blueprint("StorageBox", 1, 1, "Plank", 2, "", 0);
+        BowBLP = new Blueprint("Bow", 1, 1, "Stick", 3, "", 0);
+        ArrowBLP = new Blueprint("Arrow", 4, 1, "Stone", 2, "Stick", 2);
+        HoeBLP = new Blueprint("Hoe", 1, 1, "Stone", 5, "Stick", 3);
 
 
         isOpen = false;
@@ -98,6 +104,26 @@ public class CraftingSystem : MonoBehaviour
 
         craftStorageBoxBTN = survivalScreenUI.transform.Find("StorageBox").transform.Find("Button").GetComponent<Button>();
         craftStorageBoxBTN.onClick.AddListener(delegate { CraftAnyItem(StorageBoxBLP); });//
+
+        //BOW
+        BowReq1 = toolsScreenUI.transform.Find("Bow").transform.Find("Req1").GetComponent<Text>();
+
+        craftBowBTN = toolsScreenUI.transform.Find("Bow").transform.Find("Button").GetComponent<Button>();
+        craftBowBTN.onClick.AddListener(delegate{CraftAnyItem(BowBLP);});//
+
+        //Arrow
+        ArrowReq1 = toolsScreenUI.transform.Find("Arrow").transform.Find("Req1").GetComponent<Text>();
+        ArrowReq2 = toolsScreenUI.transform.Find("Arrow").transform.Find("Req2").GetComponent<Text>();
+
+        craftArrowBTN = toolsScreenUI.transform.Find("Arrow").transform.Find("Button").GetComponent<Button>();
+        craftArrowBTN.onClick.AddListener(delegate{CraftAnyItem(ArrowBLP);});//
+
+        //Hoe
+        HoeReq1 = toolsScreenUI.transform.Find("Hoe").transform.Find("Req1").GetComponent<Text>();
+        HoeReq2 = toolsScreenUI.transform.Find("Hoe").transform.Find("Req2").GetComponent<Text>();
+
+        craftHoeBTN = toolsScreenUI.transform.Find("Hoe").transform.Find("Button").GetComponent<Button>();
+        craftHoeBTN.onClick.AddListener(delegate{CraftAnyItem(HoeBLP);});//
 
     }
 
@@ -310,6 +336,44 @@ public class CraftingSystem : MonoBehaviour
         else
         {
             craftStorageBoxBTN.gameObject.SetActive(false);
+        }
+
+        //---BOW---//
+        BowReq1.text = "3 Stick [" + stick_count + "]";
+
+        if (stick_count >= 3)
+        {
+            craftBowBTN.gameObject.SetActive(true);
+        }
+        else
+        {
+            craftBowBTN.gameObject.SetActive(false);
+        }
+
+        //---Arrow---//
+        ArrowReq1.text = "2 Stone [" + stone_count + "]";
+        ArrowReq2.text = "2 Stick [" + stick_count + "]";
+
+        if (stone_count >= 2 && stick_count >= 2)
+        {
+            craftArrowBTN.gameObject.SetActive(true);
+        }
+        else
+        {
+            craftArrowBTN.gameObject.SetActive(false);
+        }
+
+        //---Hoe---//
+        HoeReq1.text = "5 Stone [" + stone_count + "]";
+        HoeReq2.text = "3 Stick [" + stick_count + "]";
+
+        if (stone_count >= 5 && stick_count >= 3)
+        {
+            craftHoeBTN.gameObject.SetActive(true);
+        }
+        else
+        {
+            craftHoeBTN.gameObject.SetActive(false);
         }
     }
 }

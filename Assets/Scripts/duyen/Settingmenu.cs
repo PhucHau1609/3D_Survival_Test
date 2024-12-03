@@ -15,6 +15,8 @@ public class Settingmenu : MonoBehaviour
 
     public GameObject mainpanel;
     public GameObject settingpanel;
+    public GameObject loadpanel;
+    public GameObject hdpanel;
 
     private void OnEnable()
     {
@@ -41,6 +43,8 @@ public class Settingmenu : MonoBehaviour
     {
         mainpanel.SetActive(true);
         settingpanel.SetActive(false);
+        loadpanel.SetActive(false);
+        hdpanel.SetActive(false);
     }
 
     private void UpdateVolume(string type, float value)

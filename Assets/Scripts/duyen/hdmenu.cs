@@ -8,6 +8,8 @@ public class hdmenu : MonoBehaviour
     [SerializeField] private Button backButton;
 
     public GameObject mainpanel;
+    public GameObject settingpanel;
+    public GameObject loadpanel;
     public GameObject hdpanel;
 
     private void OnEnable()
@@ -25,6 +27,8 @@ public class hdmenu : MonoBehaviour
     private void Showback()
     {
         mainpanel.SetActive(true);
+        settingpanel.SetActive(false);
+        loadpanel.SetActive(false);
         hdpanel.SetActive(false);
     }
 }

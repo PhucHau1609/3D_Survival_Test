@@ -14,26 +14,9 @@ public class loadmenu : MonoBehaviour
     private Button slot3;
 
     public GameObject mainpanel;
+    public GameObject settingpanel;
     public GameObject loadpanel;
-    
-    // private void Awake()
-    // {
-    //     VisualElement root = loadMenuDocument.rootVisualElement;
-
-    //     backButton = root.Q<Button>("backButton");
-        
-    //     if (backButton != null)
-    //     {
-    //         // Đăng ký sự kiện bấm nút
-    //         backButton.RegisterCallback<ClickEvent>(evt => Showback());
-    //     }
-    //     else
-    //     {
-    //         Debug.LogError("backButton không được tìm thấy!");
-    //     }
-
-    //     // backButton.clickable.clicked += Showback;
-    // }
+    public GameObject hdpanel;
     
     private void OnEnable()
     {
@@ -71,7 +54,9 @@ public class loadmenu : MonoBehaviour
     private void Showback()
     {
         mainpanel.SetActive(true);
+        settingpanel.SetActive(false);
         loadpanel.SetActive(false);
+        hdpanel.SetActive(false);
     }
 
     private void LoadSlotData(int slotNumber)
