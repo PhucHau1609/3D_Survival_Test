@@ -114,7 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 785c8b82ec140dd4089ce2b2bba95e14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTrashable: 0
+  isTrashable: 1
   thisName: Log
   thisDescription: A small piece of woof, portable and can be craft
   thisFunctionality: Used for crafting after processed
