@@ -20077,6 +20077,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f5d15faef771a04ca6a419b1054ec50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnDayPass:
+    m_PersistentCalls:
+      m_Calls: []
   dayUI: {fileID: 946612395}
   dayInGame: 1
 --- !u!4 &976507353
