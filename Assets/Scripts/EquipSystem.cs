@@ -141,9 +141,31 @@ public class EquipSystem : MonoBehaviour
         }
         
         string selectedItemName = selectedItem.name.Replace("(Clone)","");
-        selectedItemModel = Instantiate(Resources.Load<GameObject>(selectedItemName + "_Model"),
-            new Vector3(0.6f, 0, 0.4f), Quaternion.Euler(0, -12.5f, -20f));
+        // selectedItemModel = Instantiate(Resources.Load<GameObject>(selectedItemName + "_Model"),
+        //     new Vector3(0.6f, 0, 0.4f), Quaternion.Euler(0, -12.5f, -20f));
+
+        selectedItemModel = Instantiate(Resources.Load<GameObject>(CalculateItemModel(selectedItemName)));
         selectedItemModel.transform.SetParent(toolHolder.transform, false);
+    }
+
+    private string CalculateItemModel(string selectedItemName)
+    {
+        switch (selectedItemName)
+        {
+            case "Axe":
+                SoundManager.Instance.PlaySound(SoundManager.Instance.drawMetalicToolSound);
+                return "Axe_Model";
+            case "TomatoSeed":
+                return "Hand_Model";
+            case "Bow":
+                SoundManager.Instance.PlaySound(SoundManager.Instance.drawMetalicToolSound);
+                return "Bow_Model";
+            case "Hoe":
+                SoundManager.Instance.PlaySound(SoundManager.Instance.drawMetalicToolSound);
+                return "Hoe_Model";
+            default:
+                return null;
+        }
     }
 
     GameObject GetSelectedItem(int slotNumber)
@@ -262,6 +284,26 @@ public class EquipSystem : MonoBehaviour
        else
         {
             return 0;
+        }
+    }
+
+    public bool IsPlayerHoldingSeed()
+    {
+        if (selectedItemModel != null)
+        {
+            switch (selectedItemModel.gameObject.name)
+            {
+                case "Hand_Model(Clone)":
+                    return true;
+                case "Hand_Model":
+                    return true;
+                default:
+                    return false;
+            }
+        }
+        else
+        {
+            return false;
         }
     }
 
