@@ -26,15 +26,11 @@ public class SelectionManager : MonoBehaviour
 
     public GameObject selectedSoil;
 
-    public Animator animator;
-
-
     private void Start()
     {
         onTarget = false;
 
         interaction_text = interaction_Info_UI.GetComponent<TextMeshProUGUI>(); // Lấy thành phần TextMeshProUGUI
-        animator = transform.parent.transform.parent.GetComponent<Animator>();
     }
 
     private void Awake()
@@ -236,7 +232,6 @@ public class SelectionManager : MonoBehaviour
 
                             if (Input.GetMouseButtonDown(0))
                             {
-                                
                                 SoundManager.Instance.wateringChannel.PlayOneShot(SoundManager.Instance.wateringCan);
 
                                 soil.currentPlant.isWatered = true;
