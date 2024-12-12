@@ -24,7 +24,7 @@ public class Plant : MonoBehaviour
     [SerializeField] int daysRemainingForNewProduceCounter;
 
     [SerializeField] bool isOneTimeHarvest;
-    [SerializeField] bool isWatered; //Only if the plant is watered at the end of the day, it will "age";
+    public bool isWatered; //Only if the plant is watered at the end of the day, it will "age";
 
     private void OnEnable()
     {
@@ -36,16 +36,31 @@ public class Plant : MonoBehaviour
         TimeManager.Instance.OnDayPass.RemoveListener(DayPass);
     }
 
+    private void OnDestroy()
+    {
+        GetComponentInParent<Soil>().isEmpty = true;
+        GetComponentInParent<Soil>().plantName = "";
+        GetComponentInParent<Soil>().currentPlant = null;
+    }
+
     private void DayPass()
     {
         if (isWatered)
         {
             plantAge++;
+
+            isWatered = false;
+            GetComponentInChildren<Soil>().MakeSoilNotWatered();
+            GetComponent<SphereCollider>().enabled = false;
         }
 
         CheckGrowth();
 
-        CheckProduce();
+        if (!isOneTimeHarvest)
+        {
+            CheckProduce();
+        }
+        
 
     }
 
@@ -54,6 +69,17 @@ public class Plant : MonoBehaviour
         seedModel.SetActive(plantAge < ageForYoungModel);
         youngPlantModel.SetActive(plantAge >= ageForYoungModel && plantAge < ageForMatureModel);
         maturePlantModel.SetActive(plantAge >= ageForMatureModel);
+
+        if (plantAge >= ageForMatureModel && isOneTimeHarvest)
+        {
+            MakePlantPickable();
+        }
+    }
+
+    private void MakePlantPickable()
+    {
+        GetComponent<InteractableObject>().enabled = true;
+        GetComponent<SphereCollider>().enabled = true;
     }
 
     private void CheckProduce()
@@ -66,15 +92,15 @@ public class Plant : MonoBehaviour
         if (plantAge > ageForFirstProduceBatch)
         {
             if (daysRemainingForNewProduceCounter == 0)
-                {
-                    GenerateProduceForEmptySpawns();
+            {
+                GenerateProduceForEmptySpawns();
 
-                    daysRemainingForNewProduceCounter = daysForNewProduce;
-                }
-                else
-                {
-                    daysRemainingForNewProduceCounter--;
-                }
+                daysRemainingForNewProduceCounter = daysForNewProduce;
+            }
+            else
+            {
+                daysRemainingForNewProduceCounter--;
+            }
         }        
     }
 

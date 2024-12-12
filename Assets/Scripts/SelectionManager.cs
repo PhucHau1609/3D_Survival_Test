@@ -26,11 +26,15 @@ public class SelectionManager : MonoBehaviour
 
     public GameObject selectedSoil;
 
+    public Animator animator;
+
+
     private void Start()
     {
         onTarget = false;
 
         interaction_text = interaction_Info_UI.GetComponent<TextMeshProUGUI>(); // Lấy thành phần TextMeshProUGUI
+        animator = transform.parent.transform.parent.GetComponent<Animator>();
     }
 
     private void Awake()
@@ -218,8 +222,34 @@ public class SelectionManager : MonoBehaviour
                     interaction_Info_UI.SetActive(true);
                 }
                 else{
-                    interaction_text.text = soil.plantName;
-                    interaction_Info_UI.SetActive(true);
+                    if(EquipSystem.Instance.IsPlayerHoldingWateringCan())
+                    {
+                        if (soil.currentPlant.isWatered)
+                        {
+                            interaction_text.text = soil.plantName;
+                            interaction_Info_UI.SetActive(true);
+                        }
+                        else
+                        {
+                            interaction_text.text = "Use Watering Can";
+                            interaction_Info_UI.SetActive(true);
+
+                            if (Input.GetMouseButtonDown(0))
+                            {
+                                
+                                SoundManager.Instance.wateringChannel.PlayOneShot(SoundManager.Instance.wateringCan);
+
+                                soil.currentPlant.isWatered = true;
+                                soil.MakeSoilWatered();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        interaction_text.text = soil.plantName;
+                        interaction_Info_UI.SetActive(true);
+                    }
+                    
                 }
 
                 selectedSoil = soil.gameObject;

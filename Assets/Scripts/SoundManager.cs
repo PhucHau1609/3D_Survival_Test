@@ -21,6 +21,8 @@ public class SoundManager : MonoBehaviour
 
     //Music
     public AudioSource startingZoneBGMusic;
+    public AudioSource wateringChannel;
+    public AudioClip wateringCan;
 
     //voice
     public AudioSource voiceovers;

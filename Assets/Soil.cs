@@ -9,7 +9,10 @@ public class Soil : MonoBehaviour
     public bool playerInRange;
     public string plantName;
 
-    private Plant currentPlant;
+    public Plant currentPlant;
+
+    public Material defaultMaterial;
+    public Material wateredMaterial;
     
     private void Update()
     {
@@ -51,5 +54,13 @@ public class Soil : MonoBehaviour
         // set planting day
         currentPlant.dayOfPlanting = TimeManager.Instance.dayInGame;
     }
-    
+
+    internal void MakeSoilWatered()
+    {
+        GetComponent<Renderer>().material = wateredMaterial;
+    }
+    internal void MakeSoilNotWatered()
+    {
+        GetComponent<Renderer>().material = defaultMaterial;
+    }
 }

@@ -155,14 +155,18 @@ public class EquipSystem : MonoBehaviour
             case "Axe":
                 SoundManager.Instance.PlaySound(SoundManager.Instance.drawMetalicToolSound);
                 return "Axe_Model";
-            case "TomatoSeed":
-                return "Hand_Model";
             case "Bow":
                 SoundManager.Instance.PlaySound(SoundManager.Instance.drawMetalicToolSound);
                 return "Bow_Model";
             case "Hoe":
                 SoundManager.Instance.PlaySound(SoundManager.Instance.drawMetalicToolSound);
                 return "Hoe_Model";
+            case "TomatoSeed":
+                return "Hand_Model";
+            case "PumpkinSeed":
+                return "Hand_Model";
+            case "WateringCan":
+                return "WateringCan_Model";
             default:
                 return null;
         }
@@ -318,5 +322,23 @@ public class EquipSystem : MonoBehaviour
             return false;
         }
 
+    }
+
+    internal bool IsPlayerHoldingWateringCan()
+    {
+        if (selectedItem != null)
+        {
+            switch (selectedItem.GetComponent<InventoryItem>().thisName)
+            {
+                case "WateringCan":
+                    return true;
+                default:
+                    return false;
+            }
+        }
+        else
+        {
+            return false;
+        }
     }
 }

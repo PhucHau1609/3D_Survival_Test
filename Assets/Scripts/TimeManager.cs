@@ -8,7 +8,15 @@ public class TimeManager : MonoBehaviour
 {
     public static TimeManager Instance { get; set; }
     public UnityEvent OnDayPass = new UnityEvent();
-    public TextMeshProUGUI dayUI;
+    public enum Season
+    {
+        Spring,
+        Summer,
+        Fall,
+        Winter
+    }
+
+    public Season currentSeason = Season.Spring;
 
     private void Awake()
     {
@@ -22,13 +30,14 @@ public class TimeManager : MonoBehaviour
 
         }
     }
-
+    public int dayInGame = 1;
+    public TextMeshProUGUI dayUI;
     private void Start()
     {
         dayUI.text = $"Day: {dayInGame}";
     }
 
-    public int dayInGame = 1;
+    
 
     public void TriggerNextDay()
     {
