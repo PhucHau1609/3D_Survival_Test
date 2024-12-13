@@ -62,6 +62,8 @@ public class ChoppableTree : MonoBehaviour
             new Vector3(treesPosition.x,treesPosition.y + 2,treesPosition.z),Quaternion.Euler(0f, 0f, 0f));
 
         brokenTrees.transform.SetParent(transform.parent.transform.parent.transform.parent);
+
+        brokenTrees.GetComponent<RegrowTree>().dayOfRegrowth = TimeManager.Instance.dayInGame + 2;
     }
 
     private void Update()
