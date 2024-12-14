@@ -31,7 +31,7 @@ public class InteractableObject : MonoBehaviour
         {
             if (!InventorySystem.Instance.CheckSlotsAvailable(21)) 
             {
-                InventorySystem.Instance.AddTolnventory(ItemName);
+                InventorySystem.Instance.AddTolnventory(ItemName, true);
 
                 InventorySystem.Instance.itemPickedup.Add(gameObject.name);
 

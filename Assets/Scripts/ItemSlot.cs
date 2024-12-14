@@ -45,10 +45,15 @@ public class ItemSlot : MonoBehaviour, IDropHandler
         {
             InventoryItem draggedItem = DragDrop.itemBeingDragged.GetComponent<InventoryItem>();
 
-            if (draggedItem.thisName == GetStoredItem().thisName && IsLimitExceded(draggedItem) == false)
+            if (draggedItem.thisName == GetStoredItem().thisName 
+                && IsLimitExceded(draggedItem) == false)
             {
                 GetStoredItem().amountInInventory += draggedItem.amountInInventory;
                 DestroyImmediate(DragDrop.itemBeingDragged);
+            }
+            else 
+            {
+                DragDrop.itemBeingDragged.transform.SetParent(transform);
             }
         }
     }

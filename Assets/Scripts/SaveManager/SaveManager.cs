@@ -296,7 +296,7 @@ public class SaveManager : MonoBehaviour
         //inventory content
         foreach(string item in playerData.inventoryContent)
         {
-            InventorySystem.Instance.AddTolnventory(item);
+            InventorySystem.Instance.AddTolnventory(item, true);
         }
 
         foreach(string item in playerData.quickSlotContent)

@@ -94,6 +94,8 @@ public class InventorySystem : MonoBehaviour
         SelectionManager.Instance.GetComponent<SelectionManager>().enabled = false;
 
         isOpen = true;
+
+        ReCalculateList();
     }
 
     public void CloseUI()
@@ -112,12 +114,12 @@ public class InventorySystem : MonoBehaviour
         isOpen = false;
     }
 
-    public void AddTolnventory(string itemName)
+    public void AddTolnventory(string itemName, bool shouldStack)
     {
 
         GameObject stack = CheckIfStackExists(itemName);
 
-        if (stack != null)
+        if (stack != null && shouldStack)
         {
             stack.GetComponent<InventorySlot>().itemInSlot.amountInInventory += 1;
             stack.GetComponent<InventorySlot>().UpdateItemInSlot();
@@ -197,7 +199,7 @@ public class InventorySystem : MonoBehaviour
         int emptySlot = 0;
         foreach(GameObject slot in slotList)
         {
-            if(slot.transform.childCount > 2121)
+            if(slot.transform.childCount > 21)
             {
                 emptySlot += 1;
             }
@@ -240,13 +242,20 @@ public class InventorySystem : MonoBehaviour
 
         foreach(GameObject slot in slotList)
         {
-            if(slot.transform.childCount > 0)
+            if(slot.GetComponent<InventorySlot>())
             {
-                string name = slot.transform.GetChild(0).name; //Stone (Clone)
-                string str2 = "(Clone)";
-                string result = name.Replace(str2,"");
+                InventoryItem item = slot.GetComponent<InventorySlot>().itemInSlot;
 
-                itemList.Add(result);
+                if (item != null)
+                {
+                    if (item.amountInInventory > 0)
+                    {
+                        for (int i = 0; i < item.amountInInventory; i++)
+                        {
+                            itemList.Add(item.thisName);
+                        }
+                    }
+                }
             }
         }
     }

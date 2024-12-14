@@ -208,7 +208,7 @@ public class CraftingSystem : MonoBehaviour
 
         for (int i = 0; i < blueprintToCraft.numOfItemsToProduced; i++)
         {
-            InventorySystem.Instance.AddTolnventory(blueprintToCraft.itemName);
+            InventorySystem.Instance.AddTolnventory(blueprintToCraft.itemName, true);
         }
     }
     
@@ -228,6 +228,8 @@ public class CraftingSystem : MonoBehaviour
             SelectionManager.Instance.GetComponent<SelectionManager>().enabled = false;
 
             isOpen = true;
+
+            RefreshNeededItems();
 
         }
         else if (Input.GetKeyDown(KeyCode.C) && isOpen) //dang sua luc 4h10
