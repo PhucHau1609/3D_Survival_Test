@@ -22,7 +22,7 @@ public class InventorySystem : MonoBehaviour
 
     public bool isOpen;
 
-    public bool isFull;
+    //public bool isFull;
 
     //Pickup popup
     public GameObject pickupAlert;
@@ -30,6 +30,8 @@ public class InventorySystem : MonoBehaviour
     public Image pickupImage;
 
     public List<string> itemPickedup;
+
+    public int stackLimit = 3;
 
 
     private void Awake()
@@ -113,17 +115,22 @@ public class InventorySystem : MonoBehaviour
     public void AddTolnventory(string itemName)
     {
 
-        // if(SaveManager.Instance.isLoading == false)
-        // {
-        //     SoundManager.Instance.PlaySound(SoundManager.Instance.pickupItemSound);
-        // }
+        GameObject stack = CheckIfStackExists(itemName);
 
-        whatSlotToEquip = FindNextEmptySlot();
+        if (stack != null)
+        {
+            stack.GetComponent<InventorySlot>().itemInSlot.amountInInventory += 1;
+            stack.GetComponent<InventorySlot>().UpdateItemInSlot();
+        }
+        else
+        {
+            whatSlotToEquip = FindNextEmptySlot();
 
-        itemToAdd = Instantiate(Resources.Load<GameObject>(itemName), whatSlotToEquip.transform.position, whatSlotToEquip.transform.rotation);
-        itemToAdd.transform.SetParent(whatSlotToEquip.transform);
+            itemToAdd = Instantiate(Resources.Load<GameObject>(itemName), whatSlotToEquip.transform.position, whatSlotToEquip.transform.rotation);
+            itemToAdd.transform.SetParent(whatSlotToEquip.transform);
 
-        itemList.Add(itemName);
+            itemList.Add(itemName);
+        }
 
         SoundManager.Instance.PlaySound(SoundManager.Instance.pickupItemSound);
         TriggerPickupPopUp(itemName, itemToAdd.GetComponent<Image>().sprite);
@@ -132,6 +139,25 @@ public class InventorySystem : MonoBehaviour
         CraftingSystem.Instance.RefreshNeededItems();
 
         QuestManager.Instance.RefreshTrackerList();
+    }
+
+    private GameObject CheckIfStackExists(string itemName)
+    {
+        foreach (GameObject slot in slotList)
+        {
+            InventorySlot inventorySlot = slot.GetComponent<InventorySlot>();
+
+            inventorySlot.UpdateItemInSlot();
+            if (inventorySlot != null && inventorySlot.itemInSlot != null)
+            {
+                if (inventorySlot.itemInSlot.thisName == itemName 
+                    && inventorySlot.itemInSlot.amountInInventory < stackLimit)
+                {
+                    return slot;
+                }
+            }
+        }
+        return null;
     }
 
     void TriggerPickupPopUp(string itemName, Sprite itemSprite)
@@ -154,12 +180,11 @@ public class InventorySystem : MonoBehaviour
         pickupAlert.SetActive(false);
     }
 
-
     private GameObject FindNextEmptySlot()
     {
        foreach(GameObject slot in slotList)
         {
-            if(slot.transform.childCount == 0)
+            if(slot.transform.childCount <= 1)
             {
                 return slot;
             }
@@ -172,7 +197,7 @@ public class InventorySystem : MonoBehaviour
         int emptySlot = 0;
         foreach(GameObject slot in slotList)
         {
-            if(slot.transform.childCount > 0)
+            if(slot.transform.childCount > 2121)
             {
                 emptySlot += 1;
             }

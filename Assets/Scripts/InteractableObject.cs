@@ -41,11 +41,6 @@ public class InteractableObject : MonoBehaviour
             {
                 Debug.Log("inventory is full!");
             }
-        
         }
-
-
-
     }
-    
 }

@@ -36,6 +36,8 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public bool isUseable;
 
+    public int amountInInventory = 1;
+
     //public GameObject itemPendingToBeUsed;
 
 
