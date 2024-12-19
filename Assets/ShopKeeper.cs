@@ -19,11 +19,11 @@ public class ShopKeeper : MonoBehaviour
 
     private void Start()
     {
-        shopkeeperDialogUI.SetActive(false);
+       /* shopkeeperDialogUI.SetActive(false);
 
         buyBTN.onClick.AddListener(BuyMode);
         sellBTN.onClick.AddListener(SellMode);
-        exitBTN.onClick.AddListener(StopTalking);
+        exitBTN.onClick.AddListener(StopTalking);*/
     }
 
     private void BuyMode()
