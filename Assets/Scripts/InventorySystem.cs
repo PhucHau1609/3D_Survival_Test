@@ -284,4 +284,9 @@ public class InventorySystem : MonoBehaviour
         }
         return itemCounter;
     }
+
+    internal void AddToInventory(string fishName)
+    {
+        throw new NotImplementedException();
+    }
 }

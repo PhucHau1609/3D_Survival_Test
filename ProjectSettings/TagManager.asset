@@ -15,6 +15,7 @@ TagManager:
   - placedFoundation
   - wallGhost
   - placedWall
+  - FishingArea
   layers:
   - Default
   - TransparentFX

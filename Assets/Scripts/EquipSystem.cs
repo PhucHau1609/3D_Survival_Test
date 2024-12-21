@@ -71,7 +71,7 @@ public class EquipSystem : MonoBehaviour
         }
     }
 
-    void SelectQuickSlot(int number)
+    public void SelectQuickSlot(int number)
     {
 
         if(checkIfSlotIsFull(number) == true)
@@ -167,6 +167,8 @@ public class EquipSystem : MonoBehaviour
                 return "Hand_Model";
             case "WateringCan":
                 return "WateringCan_Model";
+            case "FishingRod":
+                return "FishingRod_Model";
             default:
                 return null;
         }
@@ -341,4 +343,6 @@ public class EquipSystem : MonoBehaviour
             return false;
         }
     }
+
+    
 }

@@ -22,13 +22,29 @@ public class FishingRod : MonoBehaviour
 
     Transform baitPosition;
 
+    GameObject baitReference;
+
     private void Start()
     {
         animator = GetComponent<Animator>();
         isEquipped = true;
     }
 
+    private void OnEnable()
+    {
+        FishingSystem.OnFishingEnd += HandleFishingEnd;
+       
+    }
 
+    private void OnDestroy()
+    {
+        FishingSystem.OnFishingEnd -= HandleFishingEnd;
+    }
+
+    public void HandleFishingEnd()
+    {
+        Destroy(baitReference);
+    }
 
     void Update()
     {
@@ -39,21 +55,20 @@ public class FishingRod : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, Mathf.Infinity))
             {
-
                 if (hit.collider.CompareTag("FishingArea"))
                 {
                     isFishingAvailable = true;
 
                     if (Input.GetMouseButtonDown(0) && !isCasted && !isPulling)
                     {
-                        StartCoroutine(CastRod(hit.point));
+                      WaterSource source =  hit.collider.gameObject.GetComponent<FishingArea>().waterSource;
+                        StartCoroutine(CastRod(hit.point, source));
                     }
                 }
                 else
                 {
                     isFishingAvailable = false;
                 }
-
             }
             else
             {
@@ -79,14 +94,19 @@ public class FishingRod : MonoBehaviour
             }
         }
 
-        if (isCasted && Input.GetMouseButtonDown(1))
+        if (isCasted && Input.GetMouseButtonDown(1) && FishingSystem.Instance.isThereABite) // only when there  is a bite
         {
             PullRod();
         }
+
+        if (FishingSystem.Instance.isThereABite)
+        {
+            baitReference.transform.Find("Alert").gameObject.SetActive(true);
+        }
+        
     }
 
-
-    IEnumerator CastRod(Vector3 targetPosition)
+    IEnumerator CastRod(Vector3 targetPosition, WaterSource source)
     {
         isCasted = true;
         animator.SetTrigger("Cast");
@@ -95,11 +115,17 @@ public class FishingRod : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         GameObject instantiatedBait = Instantiate(baitPrefab);
-        instantiatedBait.transform.position = targetPosition;
+
+        // Add offset to the Y position
+        Vector3 offsetPosition = new Vector3(targetPosition.x, targetPosition.y + 1.0f, targetPosition.z);
+        instantiatedBait.transform.position = offsetPosition;
 
         baitPosition = instantiatedBait.transform;
 
+        baitReference = instantiatedBait;
+
         // ---- > Start Fish Bite Logic
+        FishingSystem.Instance.StartFishing(source);
     }
 
     private void PullRod()
@@ -109,5 +135,6 @@ public class FishingRod : MonoBehaviour
         isPulling = true;
 
         // ---- > Start Minigame Logic
+        FishingSystem.Instance.SetHasPulled();
     }
 }
