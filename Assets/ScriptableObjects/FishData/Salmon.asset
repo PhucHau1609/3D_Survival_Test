@@ -15,3 +15,4 @@ MonoBehaviour:
   fishName: Salmon
   inventroyItem: {fileID: 6696230158228360958, guid: 18364cf58f873204c9c9691e08ddcd45, type: 3}
   probability: 40
+  fishDifficulty: 2

@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: NoBite
   m_EditorClassIdentifier: 
   fishName: NoBite
-  inventroyItem: {fileID: 0}
-  probability: 5
+  inventroyItem: {fileID: 6696230158228360958, guid: 6fa7dac95142cd64cb87c8d9bf19002d, type: 3}
+  probability: 30
+  fishDifficulty: 3

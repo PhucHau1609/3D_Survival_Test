@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Tuna
   m_EditorClassIdentifier: 
   fishName: Tuna
-  inventroyItem: {fileID: 0}
-  probability: 5
+  inventroyItem: {fileID: 6696230158228360958, guid: a23f0adb3112b214995ae74101388124, type: 3}
+  probability: 50
+  fishDifficulty: 1
