@@ -16,10 +16,10 @@ public class CraftingSystem : MonoBehaviour
     Button toolsBTN, survivalBTN, refineBTN, constructionBTN;
 
     //Craft Buttons
-    Button craftAxeBTN, craftPlankBTN, craftFoundationBTN, craftWallBTN, craftStorageBoxBTN, craftBowBTN, craftArrowBTN, craftHoeBTN, craftCampfireBTN;
+    Button craftAxeBTN, craftPlankBTN, craftFoundationBTN, craftWallBTN, craftStorageBoxBTN, craftBowBTN, craftFishingRodBTN, craftHoeBTN, craftCampfireBTN;
 
     //Requirement Text
-    Text AxeReq1, AxeReq2, PlankReq1, FoundationReq1, WallReq1, StorageBoxReq1, BowReq1, ArrowReq1, ArrowReq2, HoeReq1, HoeReq2, CampfireReq1, CampfireReq2;
+    Text AxeReq1, AxeReq2, PlankReq1, FoundationReq1, WallReq1, StorageBoxReq1, BowReq1, FishingRodReq1, HoeReq1, HoeReq2, CampfireReq1, CampfireReq2;
 
     public bool isOpen;
 
@@ -30,7 +30,7 @@ public class CraftingSystem : MonoBehaviour
     private Blueprint WallBLP;
     private Blueprint StorageBoxBLP;
     private Blueprint BowBLP;
-    private Blueprint ArrowBLP;
+    private Blueprint FishingRodBLP;
     private Blueprint HoeBLP;
     private Blueprint CampfireBLP;
 
@@ -57,7 +57,7 @@ public class CraftingSystem : MonoBehaviour
         WallBLP = new Blueprint("Wall", 1, 1, "Plank", 2, "", 0);
         StorageBoxBLP = new Blueprint("StorageBox", 1, 1, "Plank", 2, "", 0);
         BowBLP = new Blueprint("Bow", 1, 1, "Stick", 3, "", 0);
-        ArrowBLP = new Blueprint("Arrow", 4, 1, "Stone", 2, "Stick", 2);
+        FishingRodBLP = new Blueprint("FishingRod", 1, 1, "Stick", 1, "", 0);
         HoeBLP = new Blueprint("Hoe", 1, 1, "Stone", 5, "Stick", 3);
         CampfireBLP = new Blueprint("Campfire",1, 1, "Stone", 5, "Stick", 5);
 
@@ -113,12 +113,11 @@ public class CraftingSystem : MonoBehaviour
         craftBowBTN = toolsScreenUI.transform.Find("Bow").transform.Find("Button").GetComponent<Button>();
         craftBowBTN.onClick.AddListener(delegate{CraftAnyItem(BowBLP);});//
 
-        //Arrow
-        ArrowReq1 = toolsScreenUI.transform.Find("Arrow").transform.Find("Req1").GetComponent<Text>();
-        ArrowReq2 = toolsScreenUI.transform.Find("Arrow").transform.Find("Req2").GetComponent<Text>();
+        //FishingRod
+        FishingRodReq1 = toolsScreenUI.transform.Find("FishingRod").transform.Find("Req1").GetComponent<Text>();
 
-        craftArrowBTN = toolsScreenUI.transform.Find("Arrow").transform.Find("Button").GetComponent<Button>();
-        craftArrowBTN.onClick.AddListener(delegate{CraftAnyItem(ArrowBLP);});//
+        craftFishingRodBTN = toolsScreenUI.transform.Find("FishingRod").transform.Find("Button").GetComponent<Button>();
+        craftFishingRodBTN.onClick.AddListener(delegate{CraftAnyItem(FishingRodBLP);});//
 
         //Hoe
         HoeReq1 = toolsScreenUI.transform.Find("Hoe").transform.Find("Req1").GetComponent<Text>();
@@ -208,7 +207,7 @@ public class CraftingSystem : MonoBehaviour
 
         for (int i = 0; i < blueprintToCraft.numOfItemsToProduced; i++)
         {
-            InventorySystem.Instance.AddTolnventory(blueprintToCraft.itemName, true);
+            InventorySystem.Instance.AddToInventory(blueprintToCraft.itemName, true);
         }
     }
     
@@ -361,17 +360,16 @@ public class CraftingSystem : MonoBehaviour
             craftBowBTN.gameObject.SetActive(false);
         }
 
-        //---Arrow---//
-        ArrowReq1.text = "2 Stone [" + stone_count + "]";
-        ArrowReq2.text = "2 Stick [" + stick_count + "]";
+        //---FishingRod---//
+        FishingRodReq1.text = "1 Stick [" + stick_count + "]";
 
-        if (stone_count >= 2 && stick_count >= 2)
+        if (stick_count >= 1)
         {
-            craftArrowBTN.gameObject.SetActive(true);
+            craftFishingRodBTN.gameObject.SetActive(true);
         }
         else
         {
-            craftArrowBTN.gameObject.SetActive(false);
+            craftFishingRodBTN.gameObject.SetActive(false);
         }
 
         //---Hoe---//

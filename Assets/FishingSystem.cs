@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using TMPro;
 
@@ -69,6 +68,7 @@ public class FishingSystem : MonoBehaviour
     IEnumerator StartFishStruggle(FishData fish)
     {
         isThereABite = true;
+
         // wait until player pulls the rod
         while (!hasPulled)
         {
@@ -95,10 +95,10 @@ public class FishingSystem : MonoBehaviour
     {
         isThereABite = false;
         hasPulled = false;
-        // Trigger end fishing event
 
         fishBiting = null;
 
+        // Trigger end fishing event
         OnFishingEnd?.Invoke();
 
         // reset the Fishing rod model
@@ -162,12 +162,14 @@ public class FishingSystem : MonoBehaviour
         if (success)
         {           
             Debug.Log("Fish Caught");
-            InventorySystem.Instance.AddToInventory(fishBiting.fishName);
+            InventorySystem.Instance.AddToInventory(fishBiting.fishName, true);
+            
             EndFishing();
         }
         else
         {
             Debug.Log("Fish Escaped");
+            
             EndFishing();
         }
     }

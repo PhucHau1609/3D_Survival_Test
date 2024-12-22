@@ -116,7 +116,7 @@ public class InventorySystem : MonoBehaviour
         isOpen = false;
     }
 
-    public void AddTolnventory(string itemName, bool shouldStack)
+    public void AddToInventory(string itemName, bool shouldStack)
     {
 
         InventorySlot stack = CheckIfStackExists(itemName);
@@ -285,8 +285,4 @@ public class InventorySystem : MonoBehaviour
         return itemCounter;
     }
 
-    internal void AddToInventory(string fishName)
-    {
-        throw new NotImplementedException();
-    }
 }

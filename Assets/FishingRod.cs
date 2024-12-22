@@ -16,9 +16,9 @@ public class FishingRod : MonoBehaviour
 
     Animator animator;
     public GameObject baitPrefab;
-    public GameObject endof_of_rope;  // --- > IF USING ROPE
-    public GameObject start_of_rope;   // --- > IF USING ROPE   
-    public GameObject start_of_rod;    // --- > IF USING ROPE   
+    // public GameObject endof_of_rope;  // --- > IF USING ROPE
+    // public GameObject start_of_rope;   // --- > IF USING ROPE   
+    // public GameObject start_of_rod;    // --- > IF USING ROPE   
 
     Transform baitPosition;
 
@@ -77,22 +77,22 @@ public class FishingRod : MonoBehaviour
         }
 
         // --- > IF USING ROPE < --- //
-        if (isCasted || isPulling)
-        {
-            if (start_of_rope != null && start_of_rod != null && endof_of_rope != null)
-            {
-                start_of_rope.transform.position = start_of_rod.transform.position;
+        // if (isCasted || isPulling)
+        // {
+        //     if (start_of_rope != null && start_of_rod != null && endof_of_rope != null)
+        //     {
+        //         start_of_rope.transform.position = start_of_rod.transform.position;
 
-                if (baitPosition != null)
-                {
-                    endof_of_rope.transform.position = baitPosition.position;
-                }
-            }
-            else
-            {
-                Debug.Log("MISSING ROPE REFERENCES");
-            }
-        }
+        //         if (baitPosition != null)
+        //         {
+        //             endof_of_rope.transform.position = baitPosition.position;
+        //         }
+        //     }
+        //     else
+        //     {
+        //         Debug.Log("MISSING ROPE REFERENCES");
+        //     }
+        // }
 
         if (isCasted && Input.GetMouseButtonDown(1) && FishingSystem.Instance.isThereABite) // only when there  is a bite
         {
