@@ -6,27 +6,24 @@ using UnityEngine.EventSystems;
 public class ItemSlot : MonoBehaviour, IDropHandler
 {
 
-    public GameObject Item
-    {
-        get
-        {
-            if (transform.childCount > 0)
-            {
-                return transform.GetChild(0).gameObject;
-            }
+    // public GameObject Item
+    // {
+    //     get
+    //     {
+    //         if (transform.childCount > 0)
+    //         {
+    //             return transform.GetChild(0).gameObject;
+    //         }
 
-            return null;
-        }
-    }
+    //         return null;
+    //     }
+    // }
 
     public void OnDrop(PointerEventData eventData)
     {
-        Debug.Log("OnDrop");
-
         //if there is not item already then set our item.
-        if (!Item)
+        if (transform.childCount <= 1)
         {
-
             SoundManager.Instance.PlaySound(SoundManager.Instance.dropItemSound);
 
             DragDrop.itemBeingDragged.transform.SetParent(transform);
@@ -44,8 +41,38 @@ public class ItemSlot : MonoBehaviour, IDropHandler
                 InventorySystem.Instance.ReCalculateList();
             }
         }
+        else
+        {
+            InventoryItem draggedItem = DragDrop.itemBeingDragged.GetComponent<InventoryItem>();
 
+            if (draggedItem.thisName == GetStoredItem().thisName 
+                && IsLimitExceded(draggedItem) == false)
+            {
+                GetStoredItem().amountInInventory += draggedItem.amountInInventory;
+                DestroyImmediate(DragDrop.itemBeingDragged);
+            }
+            else 
+            {
+                DragDrop.itemBeingDragged.transform.SetParent(transform);
+            }
+        }
+    }
 
+    InventoryItem GetStoredItem()
+    {
+        return transform.GetChild(0).GetComponent<InventoryItem>();
+    }
+
+    bool IsLimitExceded(InventoryItem draggedItem)
+    {
+        if ((draggedItem.amountInInventory = GetStoredItem().amountInInventory) > InventorySystem.Instance.stackLimit)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
 }

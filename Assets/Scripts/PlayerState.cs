@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,6 +18,16 @@ public class PlayerState : MonoBehaviour
     //---Player Hydration---//
     public float currentHydrationPercent;
     public float maxHydrationPercent;
+
+    //---Player Oxygen---//
+    public float currentOxygenPercent;
+    public float maxOxygenPercent = 100;
+    public float oxygenDecreasedPerSecond = 1f;
+    public float oxygenTimer = 0f;
+    private float decreaseInterval = 1f;
+
+    public float outOfAirDamagePerSecond = 5f;
+
 
     public bool isHydrationActive;
 
@@ -45,6 +56,8 @@ public class PlayerState : MonoBehaviour
         currentCalories = maxCalories;
         currentHydrationPercent = maxHydrationPercent;
 
+        currentOxygenPercent = maxOxygenPercent;
+
         StartCoroutine(decreaseHydration());
     }
     IEnumerator decreaseHydration()
@@ -58,6 +71,16 @@ public class PlayerState : MonoBehaviour
 
     void Update()
     {
+        if(playerBody.GetComponent<PlayerMovement>().isUnderwater)
+        {
+            oxygenTimer += Time.deltaTime;
+
+            if(oxygenTimer >= decreaseInterval)
+            {
+                DecreaseOxygen();
+                oxygenTimer = 0;
+            }
+        }
 
         distanceTravelled += Vector3.Distance(playerBody.transform.position, lastPosition);
         lastPosition = playerBody.transform.position;
@@ -74,8 +97,21 @@ public class PlayerState : MonoBehaviour
         }
     }
 
-    public void setHealth(float newHealth)
+    private void DecreaseOxygen()
     {
+        currentOxygenPercent -= oxygenDecreasedPerSecond * decreaseInterval;
+        
+        // out of air
+        if(currentOxygenPercent < 0)
+        {
+            currentOxygenPercent = 0;
+            SetHealth(currentHealth - outOfAirDamagePerSecond);
+        }
+    }
+
+    public void SetHealth(float newHealth)
+    {
+       
         currentHealth = newHealth;
     }
 
@@ -87,5 +123,10 @@ public class PlayerState : MonoBehaviour
     public void setHydration(float newHydration)
     {
         currentHydrationPercent = newHydration;
+    }
+
+    internal void setHealth(float maxHealth)
+    {
+        throw new NotImplementedException();
     }
 }

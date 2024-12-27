@@ -61,7 +61,7 @@ MonoBehaviour:
   coinReward: 25
   rewardItem1: Stone
   rewardItem2: 
-  firstRequirmentItem: Necklace
+  firstRequirmentItem: Cooked Meat
   firstRequirementAmount: 1
   secondRequirmentItem: 
   secondRequirementAmount: 0

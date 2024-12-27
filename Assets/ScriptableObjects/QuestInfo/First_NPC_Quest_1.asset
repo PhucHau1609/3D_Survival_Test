@@ -55,9 +55,9 @@ MonoBehaviour:
   coinReward: 25
   rewardItem1: Stone
   rewardItem2: 
-  firstRequirmentItem: Rabbit Hide
+  firstRequirmentItem: Stone
   firstRequirementAmount: 5
-  secondRequirmentItem: 
-  secondRequirementAmount: 0
+  secondRequirmentItem: Stick
+  secondRequirementAmount: 5
   hasCheckpoints: 0
   checkpoints: []

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,17 +13,17 @@ public class InventorySystem : MonoBehaviour
 
     public GameObject inventoryScreenUI;
 
-    public List<GameObject> slotList = new List<GameObject>();
+    public List<InventorySlot> slotList = new List<InventorySlot>();
 
     public List<string> itemList = new List<string>();
 
     private GameObject itemToAdd;
 
-    private GameObject whatSlotToEquip;
+    private InventorySlot whatSlotToEquip;
 
     public bool isOpen;
 
-    public bool isFull;
+    //public bool isFull;
 
     //Pickup popup
     public GameObject pickupAlert;
@@ -30,6 +31,8 @@ public class InventorySystem : MonoBehaviour
     public Image pickupImage;
 
     public List<string> itemPickedup;
+
+    public int stackLimit = 3;
 
 
     private void Awake()
@@ -60,7 +63,8 @@ public class InventorySystem : MonoBehaviour
         {
             if (child.CompareTag("Slot"))
             {
-                slotList.Add(child.gameObject);
+                InventorySlot slot = child.GetComponent<InventorySlot>();
+                slotList.Add(slot);
             }
 
         }
@@ -92,6 +96,8 @@ public class InventorySystem : MonoBehaviour
         SelectionManager.Instance.GetComponent<SelectionManager>().enabled = false;
 
         isOpen = true;
+
+        ReCalculateList();
     }
 
     public void CloseUI()
@@ -110,20 +116,25 @@ public class InventorySystem : MonoBehaviour
         isOpen = false;
     }
 
-    public void AddTolnventory(string itemName)
+    public void AddToInventory(string itemName, bool shouldStack)
     {
 
-        // if(SaveManager.Instance.isLoading == false)
-        // {
-        //     SoundManager.Instance.PlaySound(SoundManager.Instance.pickupItemSound);
-        // }
+        InventorySlot stack = CheckIfStackExists(itemName);
 
-        whatSlotToEquip = FindNextEmptySlot();
+        if (stack != null && shouldStack)
+        {
+            stack.itemInSlot.amountInInventory += 1;
+            stack.UpdateItemInSlot();
+        }
+        else
+        {
+            whatSlotToEquip = FindNextEmptySlot();
 
-        itemToAdd = Instantiate(Resources.Load<GameObject>(itemName), whatSlotToEquip.transform.position, whatSlotToEquip.transform.rotation);
-        itemToAdd.transform.SetParent(whatSlotToEquip.transform);
+            itemToAdd = Instantiate(Resources.Load<GameObject>(itemName), whatSlotToEquip.transform.position, whatSlotToEquip.transform.rotation);
+            itemToAdd.transform.SetParent(whatSlotToEquip.transform);
 
-        itemList.Add(itemName);
+            itemList.Add(itemName);
+        }
 
         SoundManager.Instance.PlaySound(SoundManager.Instance.pickupItemSound);
         TriggerPickupPopUp(itemName, itemToAdd.GetComponent<Image>().sprite);
@@ -132,6 +143,23 @@ public class InventorySystem : MonoBehaviour
         CraftingSystem.Instance.RefreshNeededItems();
 
         QuestManager.Instance.RefreshTrackerList();
+    }
+
+    private InventorySlot CheckIfStackExists(string itemName)
+    {
+        foreach (InventorySlot inventorySlot in slotList)
+        {
+            inventorySlot.UpdateItemInSlot();
+            if (inventorySlot != null && inventorySlot.itemInSlot != null)
+            {
+                if (inventorySlot.itemInSlot.thisName == itemName 
+                    && inventorySlot.itemInSlot.amountInInventory < stackLimit)
+                {
+                    return inventorySlot;
+                }
+            }
+        }
+        return null;
     }
 
     void TriggerPickupPopUp(string itemName, Sprite itemSprite)
@@ -154,25 +182,24 @@ public class InventorySystem : MonoBehaviour
         pickupAlert.SetActive(false);
     }
 
-
-    private GameObject FindNextEmptySlot()
+    private InventorySlot FindNextEmptySlot()
     {
-       foreach(GameObject slot in slotList)
+       foreach(InventorySlot slot in slotList)
         {
-            if(slot.transform.childCount == 0)
+            if(slot.transform.childCount <= 1)
             {
                 return slot;
             }
         }
-        return new GameObject();
+        return new InventorySlot();
     }
 
     public bool CheckSlotsAvailable(int emptyMeeded)
     {
         int emptySlot = 0;
-        foreach(GameObject slot in slotList)
+        foreach(InventorySlot slot in slotList)
         {
-            if(slot.transform.childCount > 0)
+            if(slot.transform.childCount > 21)
             {
                 emptySlot += 1;
             }
@@ -187,41 +214,58 @@ public class InventorySystem : MonoBehaviour
         }
     }
 
-    public void RemoveItem(string nameToRemove, int amountToRemove)
+    public void RemoveItem(string itemName, int amountToRemove)
     {
-
-        int counter = amountToRemove;
-
-        for (var i = slotList.Count - 1; i >= 0; i--)
+        int remainingAmountToRemove = amountToRemove;
+        while (remainingAmountToRemove != 0)
         {
-            if (slotList[i].transform.childCount > 0)
-            {
-                if (slotList[i].transform.GetChild(0).name == nameToRemove + "(Clone)" && counter != 0)
-                {
-                    Destroy(slotList[i].transform.GetChild(0).gameObject);
+            int previousRemainingAmount = remainingAmountToRemove;
 
-                    counter -= 1;
+            foreach (InventorySlot slot in slotList)
+            {
+                if (slot.itemInSlot != null && slot.itemInSlot.thisName == itemName)
+                {
+                    slot.itemInSlot.amountInInventory--;
+                    remainingAmountToRemove--;
+
+                    if (slot.itemInSlot.amountInInventory == 0)
+                    {
+                        Destroy(slot.itemInSlot.gameObject);
+                        slot.itemInSlot = null;
+                    }
+                    break;
                 }
             }
-        }
-        ReCalculateList();
-        CraftingSystem.Instance.RefreshNeededItems();
-        QuestManager.Instance.RefreshTrackerList();
 
+            if (previousRemainingAmount == remainingAmountToRemove)
+            {
+                Debug.Log("Item not found or insufficient quantity in inventory");
+                break;
+            }
+
+            ReCalculateList();
+            CraftingSystem.Instance.RefreshNeededItems();
+            QuestManager.Instance.RefreshTrackerList();
+        }
     }
+
     public void ReCalculateList()
     {
         itemList.Clear();
 
-        foreach(GameObject slot in slotList)
+        foreach(InventorySlot inventorySlot in slotList)
         {
-            if(slot.transform.childCount > 0)
-            {
-                string name = slot.transform.GetChild(0).name; //Stone (Clone)
-                string str2 = "(Clone)";
-                string result = name.Replace(str2,"");
+            InventoryItem item = inventorySlot.itemInSlot;
 
-                itemList.Add(result);
+            if (item != null)
+            {
+                if (item.amountInInventory > 0)
+                {
+                    for (int i = 0; i < item.amountInInventory; i++)
+                    {
+                        itemList.Add(item.thisName);
+                    }
+                }
             }
         }
     }
@@ -240,4 +284,5 @@ public class InventorySystem : MonoBehaviour
         }
         return itemCounter;
     }
+
 }

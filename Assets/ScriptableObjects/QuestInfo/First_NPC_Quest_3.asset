@@ -58,9 +58,9 @@ MonoBehaviour:
   finalWordsClip: {fileID: 8300000, guid: 357fc2a578544a946942c7a5ab852afb, type: 3}
   coinReward: 25
   rewardItem1: Stone
-  rewardItem2: 
-  firstRequirmentItem: Book
-  firstRequirementAmount: 1
+  rewardItem2: Stick
+  firstRequirmentItem: Plank
+  firstRequirementAmount: 20
   secondRequirmentItem: 
   secondRequirementAmount: 0
   hasCheckpoints: 0
