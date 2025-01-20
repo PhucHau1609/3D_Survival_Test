@@ -1,19 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Animal : MonoBehaviour
 {
     public string animalName;
     public bool playerInRange;
 
-    [SerializeField] int currentHealth;
-    [SerializeField] int maxHealth;
+    [SerializeField] float currentHealth;
+    [SerializeField] float maxHealth;
 
     [Header("Sounds")]
     [SerializeField] AudioSource soundChannel;
-    [SerializeField] AudioClip rabbitHitAndScrem;
-    [SerializeField] AudioClip rabbitHitAndDie;
+    [SerializeField] AudioClip animalHitAndScream;
+    [SerializeField] AudioClip animalHitAndDie;
+
+    [SerializeField] AudioClip animalAttack;
 
     private Animator animator;
     public bool isDead;
@@ -21,35 +24,42 @@ public class Animal : MonoBehaviour
     [SerializeField] ParticleSystem bloodSplashParticles;
     public GameObject bloodPuddle;
 
+    public Slider healthBarSlider;
+
+
     enum AnimalType
     {
         Rabbit,
-        Lion,
-        Snake
+        Bear,
+        Wolf
     }
     [SerializeField] AnimalType thisAnimalType;
 
     private void Start()
     {
         currentHealth = maxHealth;
+
         animator = GetComponent<Animator>();
+
     }
+
 
     public void TakeDamage(int damage)
     {
+   
         if (isDead == false)
         {
             currentHealth -= damage;
+            healthBarSlider.value = currentHealth / maxHealth;
 
-
-                bloodSplashParticles.Play();
+            bloodSplashParticles.Play();
 
             if (currentHealth <= 0)
             {
                 PlayDyingSound();
-                animator.SetTrigger("DIE");
-                GetComponent<AI_Movement>().enabled = false;
 
+                animator.SetTrigger("DIE");
+               
                 StartCoroutine(PuddleDelay());
 
                 isDead = true;
@@ -57,6 +67,9 @@ public class Animal : MonoBehaviour
             else
             {
                 PlayHitSound();
+
+                animator.SetTrigger("HURT");
+
             }
         }
     }
@@ -70,33 +83,17 @@ public class Animal : MonoBehaviour
     }
     private void PlayDyingSound()
     {
-        switch (thisAnimalType)
-        {
-            case AnimalType.Rabbit:
-                soundChannel?.PlayOneShot(rabbitHitAndDie);
-                break;
-            case AnimalType.Lion:
-                // TODO: Add lion dying sound
-                break;
-            case AnimalType.Snake:
-                // TODO: Add snake dying sound
-                break;
-            default:
-                Debug.LogWarning("No dying sound defined for this animal type.");
-                break;
-        }
+        soundChannel.PlayOneShot(animalHitAndDie);
     }
 
     private void PlayHitSound()
     {
-        if (soundChannel != null)
-        {
-            soundChannel.PlayOneShot(rabbitHitAndScrem);
-        }
-        else
-        {
-            Debug.LogWarning("SoundChannel is not assigned.");
-        }
+        soundChannel.PlayOneShot(animalHitAndScream);
+    }
+
+    public void PlayAttackSound()
+    {
+        soundChannel.PlayOneShot(animalAttack);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -104,6 +101,7 @@ public class Animal : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInRange = true;
+            healthBarSlider.gameObject.SetActive(true);
         }
     }
 
@@ -112,6 +110,7 @@ public class Animal : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInRange = false;
+            healthBarSlider.gameObject.SetActive(false);
         }
     }
 }

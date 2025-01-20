@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -35,7 +36,7 @@ public class ItemSlot : MonoBehaviour, IDropHandler
                 InventorySystem.Instance.ReCalculateList();
             }
 
-            if(transform.CompareTag("QuickSlot"))
+            if (transform.CompareTag("QuickSlot"))
             {
                 DragDrop.itemBeingDragged.GetComponent<InventoryItem>().isInsideQuickSlot = true;
                 InventorySystem.Instance.ReCalculateList();
@@ -45,17 +46,26 @@ public class ItemSlot : MonoBehaviour, IDropHandler
         {
             InventoryItem draggedItem = DragDrop.itemBeingDragged.GetComponent<InventoryItem>();
 
-            if (draggedItem.thisName == GetStoredItem().thisName 
+            if (draggedItem.thisName == GetStoredItem().thisName
                 && IsLimitExceded(draggedItem) == false)
             {
                 GetStoredItem().amountInInventory += draggedItem.amountInInventory;
                 DestroyImmediate(DragDrop.itemBeingDragged);
             }
-            else 
+            else
             {
                 DragDrop.itemBeingDragged.transform.SetParent(transform);
             }
         }
+
+        StartCoroutine(DelayedScan());
+    }
+
+    IEnumerator DelayedScan()
+    {
+        yield return new WaitForSeconds(0.1f);
+        SellSystem.Instance.ScanItemsInSlots();
+        SellSystem.Instance.UpdateSellAmountUI();
     }
 
     InventoryItem GetStoredItem()

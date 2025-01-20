@@ -31,6 +31,7 @@ public class StorageManager : MonoBehaviour
 
         GetRelevantUI(selectedStorage).SetActive(true);
         storageUIOpen = true;
+        MovementManager.Instance.EnableMovement(true);
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -72,6 +73,7 @@ public class StorageManager : MonoBehaviour
 
         GetRelevantUI(selectedStorage).SetActive(false);
         storageUIOpen = false;
+        MovementManager.Instance.EnableMovement(false);
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -92,9 +94,9 @@ public class StorageManager : MonoBehaviour
 
         List<GameObject> toBeDeleted = new List<GameObject>();
 
-        foreach( GameObject slot in uiSlots)
+        foreach (GameObject slot in uiSlots)
         {
-            if(slot.transform.childCount > 0)
+            if (slot.transform.childCount > 0)
             {
                 string name = slot.transform.GetChild(0).name;
                 string str2 = "(Clone)";
@@ -106,7 +108,7 @@ public class StorageManager : MonoBehaviour
             }
         }
 
-        foreach ( GameObject obj in toBeDeleted)
+        foreach (GameObject obj in toBeDeleted)
         {
             Destroy(obj);
         }

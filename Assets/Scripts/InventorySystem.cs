@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -25,6 +26,8 @@ public class InventorySystem : MonoBehaviour
 
     //public bool isFull;
 
+    public TextMeshProUGUI currencyUI;
+
     //Pickup popup
     public GameObject pickupAlert;
     public Text pickupName;
@@ -33,6 +36,8 @@ public class InventorySystem : MonoBehaviour
     public List<string> itemPickedup;
 
     public int stackLimit = 3;
+
+    internal int currentCoins = 100;
 
 
     private void Awake()
@@ -52,6 +57,7 @@ public class InventorySystem : MonoBehaviour
     {
         isOpen = false;
         //isFull = false;
+
         PopulateSlotList();
 
         Cursor.visible = false;
@@ -75,13 +81,19 @@ public class InventorySystem : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.I) && !isOpen && !ConstructionManager.Instance.inConstructionMode)
         {
-           OpenUI();
+            MovementManager.Instance.EnableLook(false);
+
+            OpenUI();
 
         }
         else if (Input.GetKeyDown(KeyCode.I) && isOpen)
         {
+            MovementManager.Instance.EnableLook(true);
+
             CloseUI();
         }
+
+        currencyUI.text = $"{currentCoins} Coins";
     }
 
     public void OpenUI()
@@ -104,7 +116,10 @@ public class InventorySystem : MonoBehaviour
     {
         inventoryScreenUI.SetActive(false);
 
-        if (!CraftingSystem.Instance.isOpen && !StorageManager.Instance.storageUIOpen && !CampfireUIManger.Instance.isUiOpen )
+        if (!CraftingSystem.Instance.isOpen &&
+            !StorageManager.Instance.storageUIOpen &&
+            !CampfireUIManger.Instance.isUiOpen &&
+            !BuySystem.Instance.ShopKeeper.isTalkingWithPlayer)
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
@@ -152,7 +167,7 @@ public class InventorySystem : MonoBehaviour
             inventorySlot.UpdateItemInSlot();
             if (inventorySlot != null && inventorySlot.itemInSlot != null)
             {
-                if (inventorySlot.itemInSlot.thisName == itemName 
+                if (inventorySlot.itemInSlot.thisName == itemName
                     && inventorySlot.itemInSlot.amountInInventory < stackLimit)
                 {
                     return inventorySlot;
@@ -184,9 +199,9 @@ public class InventorySystem : MonoBehaviour
 
     private InventorySlot FindNextEmptySlot()
     {
-       foreach(InventorySlot slot in slotList)
+        foreach (InventorySlot slot in slotList)
         {
-            if(slot.transform.childCount <= 1)
+            if (slot.transform.childCount <= 1)
             {
                 return slot;
             }
@@ -197,14 +212,14 @@ public class InventorySystem : MonoBehaviour
     public bool CheckSlotsAvailable(int emptyMeeded)
     {
         int emptySlot = 0;
-        foreach(InventorySlot slot in slotList)
+        foreach (InventorySlot slot in slotList)
         {
-            if(slot.transform.childCount > 21)
+            if (slot.transform.childCount > 21)
             {
                 emptySlot += 1;
             }
         }
-        if(emptySlot ==  emptyMeeded)
+        if (emptySlot == emptyMeeded)
         {
             return true;
         }
@@ -253,7 +268,7 @@ public class InventorySystem : MonoBehaviour
     {
         itemList.Clear();
 
-        foreach(InventorySlot inventorySlot in slotList)
+        foreach (InventorySlot inventorySlot in slotList)
         {
             InventoryItem item = inventorySlot.itemInSlot;
 
