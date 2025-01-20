@@ -12,18 +12,19 @@ public class MouseMovement : MonoBehaviour
     void Start()
     {
         //Locking the cursor to the middle of the screen and making it invisible
-       Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Update()
     {
-        if( !InventorySystem.Instance.isOpen && 
+        /*if( !InventorySystem.Instance.isOpen && 
             !CraftingSystem.Instance.isOpen && 
             !MenuManager.Instance.isMenuOpen && 
             !DialogSystem.Instance.dialogUIActive && 
             !QuestManager.Instance.isQuestMenuOpen && 
             !StorageManager.Instance.storageUIOpen &&
-            !CampfireUIManger.Instance.isUiOpen)
+            !CampfireUIManger.Instance.isUiOpen)*/
+        if (MovementManager.Instance.canLookAround)
         {
             float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
             float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;

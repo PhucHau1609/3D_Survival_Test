@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler
 {
+
+
     // --- Is this item trashable --- //
     public bool isTrashable;
 
@@ -38,6 +40,8 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public int amountInInventory = 1;
 
+    public int sellingPrice;
+
     //public GameObject itemPendingToBeUsed;
 
 
@@ -52,9 +56,9 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         itemInfoUI_itemFunctionality = itemInfoUI.transform.Find("itemFunctionality").GetComponent<Text>();
     }
 
-      void Update()
+    void Update()
     {
-        if(isSelected)
+        if (isSelected)
         {
             gameObject.GetComponent<DragDrop>().enabled = false;
         }
@@ -99,13 +103,13 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             }
             if (isUseable)
             {
-              
+
                 gameObject.SetActive(false);
                 UseItem();
             }
         }
 
-      
+
     }
 
     // Triggered when the mouse button is released over the item that has this script.
@@ -116,7 +120,7 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             if (isConsumable && itemPendingConsumption == gameObject)
             {
                 DestroyImmediate(gameObject);
-                InventorySystem.Instance.ReCalculateList();  
+                InventorySystem.Instance.ReCalculateList();
                 CraftingSystem.Instance.RefreshNeededItems();
             }
         }
@@ -161,8 +165,8 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
                 PlacementSystem.Instance.ActivatePlacementMode("StorageBoxModel");
                 break;
             case "StorageBox":
-               PlacementSystem.Instance.inventoryItemToDestory = gameObject;
-               PlacementSystem.Instance.ActivatePlacementMode("StorageBoxModel");
+                PlacementSystem.Instance.inventoryItemToDestory = gameObject;
+                PlacementSystem.Instance.ActivatePlacementMode("StorageBoxModel");
                 break;
             case "Wall":
                 ConstructionManager.Instance.ActivateConstructionPlacement("WallModel"); // For tsting
@@ -225,7 +229,7 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         {
             if ((caloriesBeforeConsumption + caloriesEffect) > maxCalories)
             {
-               PlayerState.Instance.setCalories(maxCalories);
+                PlayerState.Instance.setCalories(maxCalories);
             }
             else
             {

@@ -37,14 +37,19 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(DialogSystem.Instance.dialogUIActive == false && StorageManager.Instance.storageUIOpen == false && CampfireUIManger.Instance.isUiOpen == false)
+        //if(DialogSystem.Instance.dialogUIActive == false && StorageManager.Instance.storageUIOpen == false && CampfireUIManger.Instance.isUiOpen == false)
+        //{
+        //    Movement();
+        //}
+
+        if (MovementManager.Instance.canMove)
         {
             Movement();
         }
     }
     public void Movement()
     {
-        if(isSwimming)
+        if (isSwimming)
         {
             if (isUnderwater)
             {
@@ -89,7 +94,7 @@ public class PlayerMovement : MonoBehaviour
         if (lastPosition != gameObject.transform.position && isGrounded == true)
         {
             isMoving = true;
-            animator.SetFloat("Run",velocity.x);
+            animator.SetFloat("Run", velocity.x);
             SoundManager.Instance.PlaySound(SoundManager.Instance.grassWalkSound);
         }
         else

@@ -217,6 +217,8 @@ public class CraftingSystem : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.C) && !isOpen && !ConstructionManager.Instance.inConstructionMode)
         {
+            MovementManager.Instance.EnableLook(false);
+
             craftingScreenUI.SetActive(true);
             craftingScreenUI.GetComponentInParent<Canvas>().sortingOrder = MenuManager.Instance.SetAsFront();
 
@@ -233,6 +235,8 @@ public class CraftingSystem : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.C) && isOpen) //dang sua luc 4h10
         {
+            MovementManager.Instance.EnableLook(true);
+
             CloseCraftingSystemUI();
         }
     }

@@ -59,8 +59,17 @@ public class SelectionManager : MonoBehaviour
 
             if (shop && shop.playerInRange)
             {
-                interaction_text.text = "Talk";
-                interaction_Info_UI.SetActive(true);
+                if (shop.isTalkingWithPlayer == false)
+                {
+                    interaction_text.text = "Talk";
+                    interaction_Info_UI.SetActive(true);
+                }
+                else
+                {
+                    interaction_text.text = "";
+                    interaction_Info_UI.SetActive(false);
+                }
+
 
                 if (Input.GetMouseButtonDown(0) && shop.isTalkingWithPlayer == false)
                 {
@@ -71,17 +80,17 @@ public class SelectionManager : MonoBehaviour
 
             NPC npc = selectionTransform.GetComponent<NPC>();
 
-            if(npc && npc.playerInRange)
+            if (npc && npc.playerInRange)
             {
                 interaction_text.text = "Talk";
                 interaction_Info_UI.SetActive(true);
 
-                if(Input.GetMouseButtonDown(0) && npc.isTalkingWithPlayer == false)
+                if (Input.GetMouseButtonDown(0) && npc.isTalkingWithPlayer == false)
                 {
                     npc.StartConversation();
                 }
 
-                if(DialogSystem.Instance.dialogUIActive)
+                if (DialogSystem.Instance.dialogUIActive)
                 {
                     interaction_Info_UI.SetActive(false);
                     centerDotImage.gameObject.SetActive(false);
@@ -126,7 +135,7 @@ public class SelectionManager : MonoBehaviour
 
             StorageBox storageBox = selectionTransform.GetComponent<StorageBox>();
 
-            if( storageBox && storageBox.playerInRange && PlacementSystem.Instance.inPlacementMode == false)
+            if (storageBox && storageBox.playerInRange && PlacementSystem.Instance.inPlacementMode == false)
             {
                 interaction_text.text = "Open";
                 interaction_Info_UI.SetActive(true);
@@ -140,7 +149,7 @@ public class SelectionManager : MonoBehaviour
             }
             else
             {
-                if(selectedStorageBox != null)
+                if (selectedStorageBox != null)
                 {
                     selectedStorageBox = null;
                 }
@@ -173,7 +182,7 @@ public class SelectionManager : MonoBehaviour
 
 
             Animal animal = selectionTransform.GetComponent<Animal>();
-            if(animal && animal.playerInRange)
+            if (animal && animal.playerInRange)
             {
                 if (animal.isDead)
                 {
@@ -182,9 +191,9 @@ public class SelectionManager : MonoBehaviour
                     centerDotImage.gameObject.SetActive(false);
                     handIcon.gameObject.SetActive(true);
                     handIsVisible = true;
-                    if(Input.GetMouseButtonDown(0))
+                    if (Input.GetMouseButtonDown(0))
                     {
-                      Lootable lootable = animal.GetComponent<Lootable>();
+                        Lootable lootable = animal.GetComponent<Lootable>();
                         Loot(lootable);
                     }
                 }
@@ -209,12 +218,12 @@ public class SelectionManager : MonoBehaviour
 
             Soil soil = selectionTransform.GetComponent<Soil>();
 
-            if (soil && soil.playerInRange )
+            if (soil && soil.playerInRange)
             {
-                if(soil.isEmpty && EquipSystem.Instance.IsPlayerHoldingSeed())
+                if (soil.isEmpty && EquipSystem.Instance.IsPlayerHoldingSeed())
                 {
                     string seedName = EquipSystem.Instance.selectedItem.GetComponent<InventoryItem>().thisName;
-                    string onlyPlantName = seedName.Split(new string[] { " Seed"}, StringSplitOptions.None)[0];
+                    string onlyPlantName = seedName.Split(new string[] { " Seed" }, StringSplitOptions.None)[0];
                     interaction_text.text = "Plant " + onlyPlantName;
                     interaction_Info_UI.SetActive(true);
 
@@ -226,13 +235,14 @@ public class SelectionManager : MonoBehaviour
                     }
                 }
 
-                else if(soil.isEmpty)
+                else if (soil.isEmpty)
                 {
                     interaction_text.text = "Soil";
                     interaction_Info_UI.SetActive(true);
                 }
-                else{
-                    if(EquipSystem.Instance.IsPlayerHoldingWateringCan())
+                else
+                {
+                    if (EquipSystem.Instance.IsPlayerHoldingWateringCan())
                     {
                         if (soil.currentPlant.isWatered)
                         {
@@ -258,7 +268,7 @@ public class SelectionManager : MonoBehaviour
                         interaction_text.text = soil.plantName;
                         interaction_Info_UI.SetActive(true);
                     }
-                    
+
                 }
 
                 selectedSoil = soil.gameObject;
@@ -272,7 +282,7 @@ public class SelectionManager : MonoBehaviour
             }
 
 
-            if(!interactable && !animal)
+            if (!interactable && !animal)
             {
                 onTarget = false;
                 handIsVisible = false;
@@ -281,7 +291,7 @@ public class SelectionManager : MonoBehaviour
                 handIcon.gameObject.SetActive(false);
             }
 
-            if(!npc && !interactable && !animal && !choppableTree && !storageBox && !campfire && !soil && !shop)
+            if (!npc && !interactable && !animal && !choppableTree && !storageBox && !campfire && !soil && !shop)
             {
                 interaction_text.text = "";
                 interaction_Info_UI.SetActive(false);
@@ -292,10 +302,10 @@ public class SelectionManager : MonoBehaviour
 
     private void Loot(Lootable lootable)
     {
-        if(lootable.wasLootCalculated == false)
+        if (lootable.wasLootCalculated == false)
         {
             List<LootRecieved> recievedLoot = new List<LootRecieved>();
-             foreach (LootPossibility loot in lootable.possibleLoot)
+            foreach (LootPossibility loot in lootable.possibleLoot)
             {
                 // 0 -> 1 (50% drop rate) 1/2 0,1
                 // -1 -> 1 (30% drop rate) 1/3 -1, 0 , 1
@@ -306,8 +316,8 @@ public class SelectionManager : MonoBehaviour
 
                 // -3 -> 2 (1/6 1/6 2/6) -3, -2, -1, 0, 1(17%), 2(17%) (33% to get something)
 
-                var lootAmount = UnityEngine.Random.Range(loot.amountMin, loot.amountMax+1);
-                if(lootAmount > 0)
+                var lootAmount = UnityEngine.Random.Range(loot.amountMin, loot.amountMax + 1);
+                if (lootAmount > 0)
                 {
                     LootRecieved lt = new LootRecieved();
                     lt.item = loot.item;
@@ -316,7 +326,7 @@ public class SelectionManager : MonoBehaviour
                 }
             }
 
-             lootable.finalLoot = recievedLoot;
+            lootable.finalLoot = recievedLoot;
             lootable.wasLootCalculated = true;
         }
 
@@ -325,7 +335,7 @@ public class SelectionManager : MonoBehaviour
         {
             for (int i = 0; i < lootRecieved.amount; i++)
             {
-                GameObject lootSpawn = Instantiate(Resources.Load<GameObject>(lootRecieved.item.name +"_Model"), new Vector3(lootSpawnPosition.x, lootSpawnPosition.y + 0.2f, lootSpawnPosition.z ), Quaternion.Euler(0,0,0));
+                GameObject lootSpawn = Instantiate(Resources.Load<GameObject>(lootRecieved.item.name + "_Model"), new Vector3(lootSpawnPosition.x, lootSpawnPosition.y + 0.2f, lootSpawnPosition.z), Quaternion.Euler(0, 0, 0));
             }
         }
 
@@ -341,7 +351,7 @@ public class SelectionManager : MonoBehaviour
 
     IEnumerator DealDamageTo(Animal animal, float delay, int damage)
     {
-      yield return new WaitForSeconds(delay);
+        yield return new WaitForSeconds(delay);
 
         animal.TakeDamage(damage);
     }
