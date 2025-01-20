@@ -9,7 +9,7 @@ public class ShopKeeper : MonoBehaviour
     public bool playerInRange;
     public bool isTalkingWithPlayer;
 
-    public GameObject shopkeeperDialogUI;
+    public GameObject shopkepperDialogUI;
     public Button buyBTN;
     public Button sellBTN;
     public Button exitBTN;
@@ -19,11 +19,11 @@ public class ShopKeeper : MonoBehaviour
 
     private void Start()
     {
-       /* shopkeeperDialogUI.SetActive(false);
+        shopkepperDialogUI.SetActive(false);
 
         buyBTN.onClick.AddListener(BuyMode);
         sellBTN.onClick.AddListener(SellMode);
-        exitBTN.onClick.AddListener(StopTalking);*/
+        exitBTN.onClick.AddListener(StopTalking);
     }
 
     private void BuyMode()
@@ -42,7 +42,8 @@ public class ShopKeeper : MonoBehaviour
         HideDialogUI();
     }
 
-    private void DialogMode()
+
+    public void DialogMode()
     {
         DisplayDialogUI();
 
@@ -54,25 +55,37 @@ public class ShopKeeper : MonoBehaviour
     {
         isTalkingWithPlayer = true;
         DisplayDialogUI();
+
+        MovementManager.Instance.EnableMovement(false);
+        MovementManager.Instance.EnableLook(false);
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     public void StopTalking()
     {
         isTalkingWithPlayer = false;
         HideDialogUI();
+
+        MovementManager.Instance.EnableMovement(true);
+        MovementManager.Instance.EnableLook(true);
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     private void DisplayDialogUI()
     {
-        shopkeeperDialogUI.SetActive(true);
+        shopkepperDialogUI.SetActive(true);
     }
 
     private void HideDialogUI()
     {
-        shopkeeperDialogUI.SetActive(false);
+        shopkepperDialogUI.SetActive(false);
     }
 
-    #region || --- On Trigger Events --- ||
+    #region || --- On Trigger Event --- ||
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
