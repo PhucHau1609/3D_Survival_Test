@@ -161,9 +161,9 @@ public class EquipSystem : MonoBehaviour
             case "Hoe":
                 SoundManager.Instance.PlaySound(SoundManager.Instance.drawMetalicToolSound);
                 return "Hoe_Model";
-            case "TomatoSeed":
+            case "Tomato Seed":
                 return "Hand_Model";
-            case "PumpkinSeed":
+            case "Pumpkin Seed":
                 return "Hand_Model";
             case "WateringCan":
                 return "WateringCan_Model";
