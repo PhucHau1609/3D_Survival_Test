@@ -8,6 +8,7 @@ public class DayNightSystem : MonoBehaviour
 {
     public Light directionalLight;
 
+    private int lastHour = -1;//8/2/duyenduyen
     public float dayDurationInSeconds = 24f;
     public int currentHour;
     float currentTimeOfDay = 0.35f;
@@ -51,6 +52,12 @@ public class DayNightSystem : MonoBehaviour
         {
             lockNextDayTrigger = false;
         }
+        if (currentHour != lastHour) // Kiểm tra nếu giờ thay đổi
+        {
+            lastHour = currentHour;
+            TimeManager.Instance.OnHourPass.Invoke(currentHour); // Gọi sự kiện mỗi khi đổi giờ
+        }//8/2/duyenduyen
+        
     }
 
     private void UpdateSkybox()

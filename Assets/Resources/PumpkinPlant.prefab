@@ -268,8 +268,8 @@ MonoBehaviour:
   producePrefab: {fileID: 0}
   dayOfPlanting: 0
   plantAge: 0
-  ageForYoungModel: 1
-  ageForMatureModel: 2
+  ageForYoungModel: 6
+  ageForMatureModel: 6
   ageForFirstProduceBatch: 0
   daysForNewProduce: 0
   daysRemainingForNewProduceCounter: 0

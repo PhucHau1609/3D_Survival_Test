@@ -55,6 +55,8 @@ public class Soil : MonoBehaviour
         currentPlant.dayOfPlanting = TimeManager.Instance.dayInGame;
     }
 
+
+
     internal void MakeSoilWatered()
     {
         GetComponent<Renderer>().material = wateredMaterial;

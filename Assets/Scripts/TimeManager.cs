@@ -9,30 +9,14 @@ public class TimeManager : MonoBehaviour
 {
     public static TimeManager Instance { get; set; }
     public UnityEvent OnDayPass = new UnityEvent();
-    public enum Season
-    {
-        Spring,
-        Summer,
-        Fall,
-        Winter
-    }
-
+    public UnityEvent<int> OnHourPass = new UnityEvent<int>();//8/2/duyenduyen
+    public enum Season { Spring,Summer,Fall,Winter}
     public Season currentSeason = Season.Spring;
 
     private int daysPerSeason = 30;
     private int daysInCurrentSeason = 1;
 
-    public enum DayOfWeek
-    {
-        Monday,
-        Tuesday,
-        Wednesday,
-        Thursday,
-        Friday,
-        Saturday,
-        Sunday
-    }
-
+    public enum DayOfWeek { Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday}
     public DayOfWeek currentDayOfWeed = DayOfWeek.Monday;
 
     private void Awake()
