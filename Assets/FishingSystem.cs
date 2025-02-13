@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -172,6 +172,12 @@ public class FishingSystem : MonoBehaviour
             
             EndFishing();
         }
+    }
+    public void CancelFishing()
+    {
+        isThereABite = false;
+        hasPulled = false;
+        OnFishingEnd?.Invoke(); // Gọi sự kiện kết thúc câu cá nếu cần
     }
 
 }

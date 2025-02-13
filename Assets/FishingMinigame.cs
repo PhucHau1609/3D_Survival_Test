@@ -1,6 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,27 +10,30 @@ public class FishingMinigame : MonoBehaviour
     public bool isFishOverlapping;
 
     public Slider successSlider;
-    float successIncrement = 15;
-    float failDecrement = 12;
-    float successThreshold = 100;
-    float failThreshold = -100;
-    float successCounter = 0;
+    private float successIncrement = 15f;
+    private float failDecrement = 12f;
+    private float successThreshold = 100f;
+    private float failThreshold = -100f;
+    private float successCounter = 0f;
 
     private void Update()
     {
-        if (CheckOverlapping(fishTransform, catcherTransform))
-        {
-            isFishOverlapping = true;
-        }
-        else
-        {
-            isFishOverlapping = false;
-        }
+        // Kiểm tra xem cá có nằm trong vùng catcher hay không
+        isFishOverlapping = CheckOverlapping(fishTransform, catcherTransform);
+
+        // Tính toán tiến trình bắt cá
         OverlappingCalculatiion();
+
+        // Hủy minigame khi nhấn chuột trái
+        if (Input.GetMouseButtonDown(0))
+        {
+            CancelMinigame();
+        }
     }
 
     private void OverlappingCalculatiion()
     {
+        // Nếu cá nằm trong vùng catcher, tăng thanh tiến trình
         if (isFishOverlapping)
         {
             successCounter += successIncrement * Time.deltaTime;
@@ -42,32 +43,71 @@ public class FishingMinigame : MonoBehaviour
             successCounter -= failDecrement * Time.deltaTime;
         }
 
+        // Giới hạn giá trị trong khoảng từ failThreshold đến successThreshold
         successCounter = Mathf.Clamp(successCounter, failThreshold, successThreshold);
 
-        successSlider.value = successCounter;
+        // Chỉ cập nhật thanh tiến trình nếu có thay đổi
+        if (successSlider.value != successCounter)
+        {
+            successSlider.value = successCounter;
+        }
 
-        if(successCounter >= successThreshold)
+        // Kiểm tra điều kiện thắng/thua
+        if (successCounter >= successThreshold)
         {
             FishingSystem.Instance.EndMinigame(true);
-
-            successCounter = 0;
-            successSlider.value = 0;
+            ResetMinigame();
         }
-        else if(successCounter <= failThreshold)
+        else if (successCounter <= failThreshold)
         {
             FishingSystem.Instance.EndMinigame(false);
-
-            successCounter = 0;
-            successSlider.value = 0;
+            ResetMinigame();
         }
     }
 
     private bool CheckOverlapping(RectTransform rect1, RectTransform rect2)
     {
-        Rect r1 = new Rect(rect1.position.x, rect1.position.y, rect1.rect.width, rect1.rect.height);
-        Rect r2 = new Rect(rect2.position.x, rect2.position.y, rect2.rect.width, rect2.rect.height);
+        Vector3[] corners1 = new Vector3[4];
+        Vector3[] corners2 = new Vector3[4];
+
+        rect1.GetWorldCorners(corners1);
+        rect2.GetWorldCorners(corners2);
+
+        Rect r1 = new Rect(corners1[0].x, corners1[0].y, rect1.rect.width, rect1.rect.height);
+        Rect r2 = new Rect(corners2[0].x, corners2[0].y, rect2.rect.width, rect2.rect.height);
+
         return r1.Overlaps(r2);
+    }
 
+    private void CancelMinigame()
+    {
+        Debug.Log("Minigame Canceled!");
 
+        // Đặt lại thanh trạng thái
+        successCounter = 0;
+        successSlider.value = 0;
+
+        // Kết thúc minigame với thất bại
+        FishingSystem.Instance.EndMinigame(false);
+
+        // Hủy mồi câu
+        FishingSystem.Instance.CancelFishing();
+    }
+
+    private void ResetMinigame()
+    {
+        StartCoroutine(ResetSuccessCounter());
+    }
+
+    IEnumerator ResetSuccessCounter()
+    {
+        while (Mathf.Abs(successCounter) > 0.1f)
+        {
+            successCounter = Mathf.Lerp(successCounter, 0, Time.deltaTime * 5);
+            successSlider.value = successCounter;
+            yield return null;
+        }
+        successCounter = 0;
+        successSlider.value = 0;
     }
 }

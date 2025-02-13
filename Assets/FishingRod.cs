@@ -1,27 +1,19 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor.UIElements;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class FishingRod : MonoBehaviour
 {
     public bool isEquipped;
     public bool isFishingAvailable;
-
     public bool isCasted;
     public bool isPulling;
 
     Animator animator;
     public GameObject baitPrefab;
-    // public GameObject endof_of_rope;  // --- > IF USING ROPE
-    // public GameObject start_of_rope;   // --- > IF USING ROPE   
-    // public GameObject start_of_rod;    // --- > IF USING ROPE   
-
     Transform baitPosition;
-
     GameObject baitReference;
 
     private void Start()
@@ -33,7 +25,6 @@ public class FishingRod : MonoBehaviour
     private void OnEnable()
     {
         FishingSystem.OnFishingEnd += HandleFishingEnd;
-       
     }
 
     private void OnDestroy()
@@ -43,7 +34,11 @@ public class FishingRod : MonoBehaviour
 
     public void HandleFishingEnd()
     {
-        Destroy(baitReference);
+        if (baitReference != null)
+        {
+            Destroy(baitReference);
+            baitReference = null;
+        }
     }
 
     void Update()
@@ -51,17 +46,18 @@ public class FishingRod : MonoBehaviour
         if (isEquipped)
         {
             Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
-
             RaycastHit hit;
+
             if (Physics.Raycast(ray, out hit, Mathf.Infinity))
             {
                 if (hit.collider.CompareTag("FishingArea"))
                 {
                     isFishingAvailable = true;
 
+                    // Vung cần (ném mồi) khi nhấn chuột trái nếu chưa ném mồi
                     if (Input.GetMouseButtonDown(0) && !isCasted && !isPulling)
                     {
-                      WaterSource source =  hit.collider.gameObject.GetComponent<FishingArea>().waterSource;
+                        WaterSource source = hit.collider.gameObject.GetComponent<FishingArea>().waterSource;
                         StartCoroutine(CastRod(hit.point, source));
                     }
                 }
@@ -76,34 +72,23 @@ public class FishingRod : MonoBehaviour
             }
         }
 
-        // --- > IF USING ROPE < --- //
-        // if (isCasted || isPulling)
-        // {
-        //     if (start_of_rope != null && start_of_rod != null && endof_of_rope != null)
-        //     {
-        //         start_of_rope.transform.position = start_of_rod.transform.position;
+        // Hủy thao tác câu cá khi nhấn chuột trái nếu đã ném mồi và có cá cắn câu
+        if (isCasted && FishingSystem.Instance.isThereABite && Input.GetMouseButtonDown(0))
+        {
+            CancelFishing();
+        }
 
-        //         if (baitPosition != null)
-        //         {
-        //             endof_of_rope.transform.position = baitPosition.position;
-        //         }
-        //     }
-        //     else
-        //     {
-        //         Debug.Log("MISSING ROPE REFERENCES");
-        //     }
-        // }
-
-        if (isCasted && Input.GetMouseButtonDown(1) && FishingSystem.Instance.isThereABite) // only when there  is a bite
+        // Kéo cần câu khi nhấn chuột phải nếu có cá cắn câu
+        if (isCasted && Input.GetMouseButtonDown(1) && FishingSystem.Instance.isThereABite)
         {
             PullRod();
         }
 
-        if (FishingSystem.Instance.isThereABite)
+        // Hiển thị cảnh báo khi có cá cắn câu
+        if (FishingSystem.Instance.isThereABite && baitReference != null)
         {
             baitReference.transform.Find("Alert").gameObject.SetActive(true);
         }
-        
     }
 
     IEnumerator CastRod(Vector3 targetPosition, WaterSource source)
@@ -111,20 +96,16 @@ public class FishingRod : MonoBehaviour
         isCasted = true;
         animator.SetTrigger("Cast");
 
-        // Create a delay between the animation and when the bait appears in the water
+        // Tạo độ trễ giữa animation và khi mồi xuất hiện trong nước
         yield return new WaitForSeconds(1f);
 
         GameObject instantiatedBait = Instantiate(baitPrefab);
-
-        // Add offset to the Y position
-        Vector3 offsetPosition = new Vector3(targetPosition.x, targetPosition.y + 1.0f, targetPosition.z);
-        instantiatedBait.transform.position = offsetPosition;
+        instantiatedBait.transform.position = new Vector3(targetPosition.x, targetPosition.y + 1.0f, targetPosition.z);
 
         baitPosition = instantiatedBait.transform;
-
         baitReference = instantiatedBait;
 
-        // ---- > Start Fish Bite Logic
+        // Bắt đầu logic cá cắn câu
         FishingSystem.Instance.StartFishing(source);
     }
 
@@ -134,7 +115,25 @@ public class FishingRod : MonoBehaviour
         isCasted = false;
         isPulling = true;
 
-        // ---- > Start Minigame Logic
+        // Kích hoạt minigame câu cá
         FishingSystem.Instance.SetHasPulled();
+    }
+
+    private void CancelFishing()
+    {
+        Debug.Log("Fishing Canceled!");
+
+        isCasted = false;
+        isPulling = false;
+
+        // Hủy mồi câu nếu đã có
+        if (baitReference != null)
+        {
+            Destroy(baitReference);
+            baitReference = null;
+        }
+
+        // Đặt lại trạng thái trong FishingSystem
+        FishingSystem.Instance.CancelFishing();
     }
 }
