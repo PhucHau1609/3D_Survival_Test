@@ -13,27 +13,29 @@ public class Plant : MonoBehaviour
 
     [SerializeField] GameObject producePrefab;
 
-    public int dayOfPlanting;
-    [SerializeField] int plantAge = 0; //depends on the watering frequency
+    public float dayOfPlanting;
+    [SerializeField] float plantAge = 0; //depends on the watering frequency
 
-    [SerializeField] int ageForYoungModel;
-    [SerializeField] int ageForMatureModel;
-    [SerializeField] int ageForFirstProduceBatch;
+    [SerializeField] float ageForYoungModel;
+    [SerializeField] float ageForMatureModel;
+    [SerializeField] float ageForFirstProduceBatch;
 
-    [SerializeField] int daysForNewProduce; //Day it take for new fruit to grow after the initial batch;
-    [SerializeField] int daysRemainingForNewProduceCounter;
+    [SerializeField] float daysForNewProduce; //Day it take for new fruit to grow after the initial batch;
+    [SerializeField] float daysRemainingForNewProduceCounter;
 
     [SerializeField] bool isOneTimeHarvest;
     public bool isWatered; //Only if the plant is watered at the end of the day, it will "age";
 
     private void OnEnable()
     {
-        TimeManager.Instance.OnDayPass.AddListener(DayPass);
+        TimeManager.Instance.OnHourPass.AddListener(HourPass);//8/2/duyen
+        //TimeManager.Instance.OnDayPass.AddListener(DayPass);
     }
 
     private void OnDisable()
     {
-        TimeManager.Instance.OnDayPass.RemoveListener(DayPass);
+        TimeManager.Instance.OnHourPass.RemoveListener(HourPass);//8/2/duyen
+        //TimeManager.Instance.OnDayPass.RemoveListener(DayPass);
     }
 
     private void OnDestroy()
@@ -43,11 +45,32 @@ public class Plant : MonoBehaviour
         GetComponentInParent<Soil>().currentPlant = null;
     }
 
+    private void HourPass(int hour)
+    {
+        if (isWatered && hour % 6 == 0)
+        {
+            plantAge ++;
+
+            isWatered = false;
+            GetComponentInChildren<Soil>().MakeSoilNotWatered();
+            GetComponent<SphereCollider>().enabled = false;
+        }
+
+        CheckGrowth();
+
+        if (!isOneTimeHarvest)
+        {
+            CheckProduce();
+        }
+        
+
+    }//8/2/duyen
+    /*
     private void DayPass()
     {
         if (isWatered)
         {
-            plantAge++;
+            plantAge ++;
 
             isWatered = false;
             GetComponentInChildren<Soil>().MakeSoilNotWatered();
@@ -63,6 +86,7 @@ public class Plant : MonoBehaviour
         
 
     }
+    */
 
     private void CheckGrowth()
     {

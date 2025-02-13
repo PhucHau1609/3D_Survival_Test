@@ -122,6 +122,7 @@ MonoBehaviour:
   isEmpty: 1
   playerInRange: 0
   plantName: 
+  wateringCanPrefab: {fileID: 5982238671314125833, guid: 854c31e61557e51468ee0a3991ec7a86, type: 3}
   currentPlant: {fileID: 0}
   defaultMaterial: {fileID: 2100000, guid: 1b6ad9e6ace69c2448dda1ea645d4556, type: 2}
   wateredMaterial: {fileID: 2100000, guid: e52afa451298b4c4bb91892706876c4f, type: 2}

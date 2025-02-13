@@ -256,6 +256,15 @@ public class SelectionManager : MonoBehaviour
 
                             if (Input.GetMouseButtonDown(0))
                             {
+                                GameObject wateringCan = GameObject.Find("WateringCan_Model(Clone)");
+                                if (wateringCan != null)
+                                {
+                                    Animator animator = wateringCan.GetComponent<Animator>();
+                                    if (animator != null)
+                                    {
+                                        animator.SetTrigger("Tuoi");
+                                    }
+                                }
                                 SoundManager.Instance.wateringChannel.PlayOneShot(SoundManager.Instance.wateringCan);
 
                                 soil.currentPlant.isWatered = true;

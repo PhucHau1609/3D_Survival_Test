@@ -733,7 +733,7 @@ MonoBehaviour:
   ageForYoungModel: 1
   ageForMatureModel: 2
   ageForFirstProduceBatch: 3
-  daysForNewProduce: 2
+  daysForNewProduce: 72
   daysRemainingForNewProduceCounter: 0
   isOneTimeHarvest: 0
   isWatered: 0
