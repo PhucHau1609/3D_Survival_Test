@@ -169,6 +169,9 @@ public class EquipSystem : MonoBehaviour
                 return "WateringCan_Model";
             case "FishingRod":
                 return "FishingRod_Model";
+
+            case "Bow_2": //E60
+                return "Bow_Model_2";
             default:
                 return null;
         }
