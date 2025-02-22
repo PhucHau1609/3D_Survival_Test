@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 33496236948719562}
   - component: {fileID: 23294306372328062}
   - component: {fileID: 135867543106557140}
+  - component: {fileID: 7303599976240588233}
   m_Layer: 0
   m_Name: storage_bag
   m_TagString: Untagged
@@ -105,3 +106,30 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.42
   m_Center: {x: 0, y: 0.42, z: -0.00000011920929}
+--- !u!205 &7303599976240588233
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1457066392037256}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0.3905654, z: -0.00000011920929}
+  m_Size: 0.98191833
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.6
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 23294306372328062}
+  - screenRelativeHeight: 0.3
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 23294306372328062}
+  - screenRelativeHeight: 0.1
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 23294306372328062}
+  m_Enabled: 1

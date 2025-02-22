@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 33046770297226394}
   - component: {fileID: 23611045576880066}
   - component: {fileID: 65646802471722706}
+  - component: {fileID: 627350568284582779}
   m_Layer: 0
   m_Name: storage_bag_potato
   m_TagString: Untagged
@@ -105,3 +106,30 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.76708984, y: 0.686697, z: 0.5278778}
   m_Center: {x: -0.03466797, y: 0.3433485, z: -0.018409729}
+--- !u!205 &627350568284582779
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1585679685311454}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0.35775328, z: -0.00000011920929}
+  m_Size: 1.2094574
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.6
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 23611045576880066}
+  - screenRelativeHeight: 0.3
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 23611045576880066}
+  - screenRelativeHeight: 0.1
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 23611045576880066}
+  m_Enabled: 1
