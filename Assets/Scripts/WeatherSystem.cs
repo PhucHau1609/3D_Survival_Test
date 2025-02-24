@@ -79,12 +79,26 @@ public class WeatherSystem : MonoBehaviour
 
     private IEnumerator LightningEffect()
     {
+        AudioSource thunderAudio = rainEffect.GetComponent<AudioSource>();
+
         while (currentWeather == WeatherCondition.Rainy)
         {
+            // Bật ánh sáng sét
             existingLight.enabled = true;
+
+            // Gọi âm thanh sét nếu chưa phát
+            if (thunderAudio != null && !thunderAudio.isPlaying)
+            {
+                thunderAudio.Play(); // Phát âm thanh sét
+            }
+
             yield return new WaitForSeconds(Random.Range(0.1f, 0.3f));
+
+            // Tắt ánh sáng sét
             existingLight.enabled = false;
-            yield return new WaitForSeconds(Random.Range(0.5f, 3f));
+
+            // Thời gian chờ giữa các lần sét
+            yield return new WaitForSeconds(Random.Range(5f, 15f));
         }
     }
 }
