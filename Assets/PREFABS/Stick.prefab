@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1437697223941135779}
   - component: {fileID: 523876516027913662}
   - component: {fileID: 7074822511011768053}
+  - component: {fileID: 5552648072042787484}
   m_Layer: 0
   m_Name: Stick
   m_TagString: pickable
@@ -29,7 +30,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1487127269085600152}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.8962104, z: -0, w: 0.44362947}
+  m_LocalRotation: {x: 0, y: -0.8962118, z: 0, w: 0.44362655}
   m_LocalPosition: {x: 21.44, y: 0.05, z: 15.35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -142,3 +143,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerInRange: 0
   ItemName: Stick
+  detectionRange: 10
+--- !u!205 &5552648072042787484
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1487127269085600152}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
+  m_Size: 1
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.25
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 6988484215698232954}
+  - screenRelativeHeight: 0.13
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 6988484215698232954}
+  - screenRelativeHeight: 0.02
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 6988484215698232954}
+  m_Enabled: 1
