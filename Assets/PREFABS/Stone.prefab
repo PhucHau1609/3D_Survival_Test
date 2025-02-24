@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7304924561307935038}
   - component: {fileID: 8519261507245527898}
   - component: {fileID: 8436499816271084085}
+  - component: {fileID: 1692915541840824348}
   m_Layer: 0
   m_Name: Stone
   m_TagString: pickable
@@ -142,3 +143,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerInRange: 0
   ItemName: Stone
+  detectionRange: 10
+--- !u!205 &1692915541840824348
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2290846898853941114}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
+  m_Size: 1
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.25
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 7893785750660969085}
+  - screenRelativeHeight: 0.13
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 7893785750660969085}
+  - screenRelativeHeight: 0.02
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 7893785750660969085}
+  m_Enabled: 1
