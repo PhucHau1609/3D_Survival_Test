@@ -165,6 +165,8 @@ public class EquipSystem : MonoBehaviour
                 return "Hand_Model";
             case "Pumpkin Seed":
                 return "Hand_Model";
+            case "Carrot Seed":
+                return "Hand_Model";
             case "WateringCan":
                 return "WateringCan_Model";
             case "FishingRod":
