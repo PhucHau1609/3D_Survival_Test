@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8020410707647959144}
   - component: {fileID: 3422689343986168500}
   - component: {fileID: 3954484606537415788}
+  - component: {fileID: 3278038012282114875}
   m_Layer: 0
   m_Name: Dirt_Pile
   m_TagString: Untagged
@@ -122,7 +123,33 @@ MonoBehaviour:
   isEmpty: 1
   playerInRange: 0
   plantName: 
-  wateringCanPrefab: {fileID: 5982238671314125833, guid: 854c31e61557e51468ee0a3991ec7a86, type: 3}
   currentPlant: {fileID: 0}
   defaultMaterial: {fileID: 2100000, guid: 1b6ad9e6ace69c2448dda1ea645d4556, type: 2}
   wateredMaterial: {fileID: 2100000, guid: e52afa451298b4c4bb91892706876c4f, type: 2}
+--- !u!205 &3278038012282114875
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8659846022197167731}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
+  m_Size: 1
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.25
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 8020410707647959144}
+  - screenRelativeHeight: 0.13
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 8020410707647959144}
+  - screenRelativeHeight: 0.02
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 8020410707647959144}
+  m_Enabled: 1
