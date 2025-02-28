@@ -1,0 +1,46 @@
+ManifestFileVersion: 0
+CRC: 2668068633
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 4f7292c5d65aa20857dd89bd7c699fc5
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 1914a99de9bb56358e172722a266a700
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 4f7292c5d65aa20857dd89bd7c699fc5
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 65
+  Script: {instanceID: 0}
+- Class: 74
+  Script: {instanceID: 0}
+- Class: 90
+  Script: {instanceID: 0}
+- Class: 91
+  Script: {instanceID: 0}
+- Class: 95
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 8453ae805a6ba45499618f2b559f03f8, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 137
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/AssetBundle/ShopKeeper.prefab
+Dependencies: []

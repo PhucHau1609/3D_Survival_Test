@@ -54,13 +54,13 @@ public class FishingSystem : MonoBehaviour
 
         if (fish.fishName == "NoBite")
         {
-            Debug.LogWarning("No fish caught");
+            //Debug.LogWarning("No fish caught");
             EndFishing();
 
         }
         else
         {
-            Debug.LogWarning(fish.fishName + " is biting");
+            //Debug.LogWarning(fish.fishName + " is biting");
             StartCoroutine(StartFishStruggle(fish));
         }
     }
@@ -177,7 +177,7 @@ public class FishingSystem : MonoBehaviour
     {
         isThereABite = false;
         hasPulled = false;
-        OnFishingEnd?.Invoke(); // Gọi sự kiện kết thúc câu cá nếu cần
+        OnFishingEnd?.Invoke();
     }
 
 }
